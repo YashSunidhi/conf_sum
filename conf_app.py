@@ -152,7 +152,7 @@ if uploaded_file is not None:
                     exapnder.write(pd.DataFrame(do11).to_html(escape=False), unsafe_allow_html=True)
 
             def concept_view_1():
-                loaded_model = BERTopic.load("./final_submission_1")
+                loaded_model = BERTopic.load("./test_conf_summ")
                 loaded_model.visualize_documents(titles, reduced_embeddings=reduced_embeddings, hide_annotations=True, hide_document_hover=False, custom_labels=True)
                 df = pd.read_csv('./test_conf_summ/final_doc_input.csv')
                 abstracts = df['Full Text'].to_list()
