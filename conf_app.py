@@ -62,11 +62,12 @@ if uploaded_file is not None:
                 col1.markdown("<h5 style='text-align: center; color: grey;'> Representative Docs base Summary (Problem-Solution Structure) </h5>", unsafe_allow_html=True)
                 do1 = df[(df['Topics']==concept_option) & (df['Summary Type']=='Problem-Solution Structure')]['Summary Variants'].reset_index(drop=True)[0]
                 col1.write(do1)
-                feedback = col1.streamlit_feedback(
-                    feedback_type="thumbs",
-                    optional_text_label="[Optional] Please provide an explanation",
-                )
-                feedback
+                with col1: 
+                    feedback = streamlit_feedback(
+                        feedback_type="thumbs",
+                        optional_text_label="[Optional] Please provide an explanation",
+                    )
+                    feedback
 
 
                 with col1:
