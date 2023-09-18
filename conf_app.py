@@ -232,6 +232,20 @@ if uploaded_file is not None:
                 dfeed = pd.DataFrame(col_feed)
                 dfeed.to_csv('feedback.csv')
 
+                def convert_df(df):
+                   return df.to_csv(index=False).encode('utf-8')
+                
+                
+                csv = convert_df(dfeed)
+                
+                st.download_button(
+                   "Press to Download",
+                   csv,
+                   "file.csv",
+                   "text/csv",
+                   key='download-csv'
+                )
+
             def concept_view_1():
                
                 df = pd.read_csv('./test_conf_summ/final_doc_input.csv')
