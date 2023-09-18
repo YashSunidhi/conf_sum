@@ -255,23 +255,23 @@ if uploaded_file is not None:
                     do11 = df1[(df1['CustomName']==concept_option) & (df1['Representative_document']==False)]['Document'].reset_index(drop=True)
                     exapnder.write(pd.DataFrame(do11).to_html(escape=False), unsafe_allow_html=True)
 
-                col_feed = [feedback, feedback1,feedback2,feedback3,feedback4,feedback5,feedback6,feedback7,feedback8,feedback9]
-                dfeed = pd.DataFrame(col_feed)
-                dfeed.to_csv('feedback.csv')
+                # col_feed = [feedback, feedback1,feedback2,feedback3,feedback4,feedback5,feedback6,feedback7,feedback8,feedback9]
+                # dfeed = pd.DataFrame(col_feed)
+                # dfeed.to_csv('feedback.csv')
 
-                def convert_df(df):
-                   return df.to_csv(index=False).encode('utf-8')
+                # def convert_df(df):
+                #    return df.to_csv(index=False).encode('utf-8')
                 
                 
-                csv = convert_df(dfeed)
+                # csv = convert_df(dfeed)
                 
-                st.download_button(
-                   "Press to Download",
-                   csv,
-                   "file.csv",
-                   "text/csv",
-                   key='download-csv'
-                )
+                # st.download_button(
+                #    "Press to Download",
+                #    csv,
+                #    "file.csv",
+                #    "text/csv",
+                #    key='download-csv'
+                # )
 
             def concept_view_1():
                
