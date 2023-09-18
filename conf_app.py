@@ -62,6 +62,24 @@ if uploaded_file is not None:
                     st.markdown("<h5 style='text-align: center; color: grey;'> Representative Docs base Summary (Problem-Solution Structure) </h5>", unsafe_allow_html=True)
                     do1 = df[(df['Topics']==concept_option) & (df['Summary Type']=='Problem-Solution Structure')]['Summary Variants'].reset_index(drop=True)[0]
                     st.write(do1)
+
+
+                
+                    exapnder = st.expander("Document Used")
+                    do11 = df1[(df1['CustomName']==concept_option) & (df1['Representative_document']==True)]['Document'].reset_index(drop=True)
+                    exapnder.write(pd.DataFrame(do11).to_html(escape=False), unsafe_allow_html=True)
+    
+                    
+                    st.markdown("<h5 style='text-align: center; color: grey;'> Non-Representative Docs base Summary(Problem-Solution Structure) </h5>", unsafe_allow_html=True)
+                    do111 = df2[(df2['Topics']==concept_option) & (df2['Summary Type']=='Problem-Solution Structure')]['Summary Variants'].reset_index(drop=True)[0]
+                    st.write(do111)
+                 
+
+               
+                    exapnder = st.expander("Document Used")
+                    do11 = df1[(df1['CustomName']==concept_option) & (df1['Representative_document']==False)]['Document'].reset_index(drop=True)
+                    exapnder.write(pd.DataFrame(do11).to_html(escape=False), unsafe_allow_html=True)
+
                     if "logged_prompt" not in st.session_state:
                         st.session_state.logged_prompt = None
                     if "feedback_key" not in st.session_state:
@@ -100,61 +118,6 @@ if uploaded_file is not None:
                             key=st.session_state.feedback_key,
                             align="flex-start",
                         )
-
-
-                
-                    exapnder = st.expander("Document Used")
-                    do11 = df1[(df1['CustomName']==concept_option) & (df1['Representative_document']==True)]['Document'].reset_index(drop=True)
-                    exapnder.write(pd.DataFrame(do11).to_html(escape=False), unsafe_allow_html=True)
-    
-                    
-                    st.markdown("<h5 style='text-align: center; color: grey;'> Non-Representative Docs base Summary(Problem-Solution Structure) </h5>", unsafe_allow_html=True)
-                    do111 = df2[(df2['Topics']==concept_option) & (df2['Summary Type']=='Problem-Solution Structure')]['Summary Variants'].reset_index(drop=True)[0]
-                    st.write(do111)
-                 
-                    if "logged_prompt" not in st.session_state:
-                        st.session_state.logged_prompt = None
-                    if "feedback_key" not in st.session_state:
-                        st.session_state.feedback_key = 1
-                    
-                    # 1. authenticate with trubrics
-                    collector = FeedbackCollector(email='smnitrkl50@gmail.com', password='Ram@2107', project="default")
-                    
-                    if st.button("Refresh"):
-                        st.session_state.feedback_key += 1
-                        st.session_state.logged_prompt = None
-                        st.experimental_rerun()
-                    
-                    prompt = "Tell me a joke"
-                    generation = "Why did the chicken cross the road? To get to the other side."
-                    #st.write(f"#### :orange[Example user prompt: {prompt}]")
-                    
-                    
-                    if st.button("To share FEEDBACK, Click here!!"):
-                        # 2. log a user prompt & model response
-                        st.session_state.logged_prompt = collector.log_prompt(
-                            config_model={"model": "llama-13b"},
-                            prompt=prompt,
-                            generation=generation,
-                        )
-                    
-                    if st.session_state.logged_prompt:
-                        #st.write(f"#### :blue[Example model generation: {generation}]")
-                        # 3. log some user feedback
-                        user_feedback = collector.st_feedback(
-                            component="default",
-                            feedback_type="thumbs",
-                            open_feedback_label="[Optional] Provide additional feedback",
-                            model=st.session_state.logged_prompt.config_model.model,
-                            prompt_id=st.session_state.logged_prompt.id,
-                            key=st.session_state.feedback_key,
-                            align="flex-start",
-                        )
-
-               
-                    exapnder = st.expander("Document Used")
-                    do11 = df1[(df1['CustomName']==concept_option) & (df1['Representative_document']==False)]['Document'].reset_index(drop=True)
-                    exapnder.write(pd.DataFrame(do11).to_html(escape=False), unsafe_allow_html=True)
                 with tab2:
                     st.markdown("<h5 style='text-align: center; color: grey;'> Representative Docs base Summary (Hierarchy and Structure) </h5>", unsafe_allow_html=True)
                     do1 = df[(df['Topics']==concept_option) & (df['Summary Type']=='Hierarchy and Structure')]['Summary Variants'].reset_index(drop=True)[0]
