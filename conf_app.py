@@ -1,0 +1,159 @@
+import streamlit as st
+import pandas as pd
+import os
+import ast
+#from bertopic import BERTopic
+st.set_page_config(layout="wide")
+st.markdown("<h1 style='text-align: center; color: black;'> Conference Assesment Tool </h1>", unsafe_allow_html=True)
+st.markdown("<h6 style='text-align: center; color: black;'> Understanding Discussion, Observation and Opinions </h6>", unsafe_allow_html=True)
+uploaded_file = st.sidebar.file_uploader("Upload a Summary csv File",type= 'csv' , key="file")
+uploaded_file1 = st.sidebar.file_uploader("Upload a Concept csv File",type= 'csv' , key="file1")
+uploaded_file2 = st.sidebar.file_uploader("Upload a Summary NR csv File",type= 'csv' , key="file2")
+if uploaded_file is not None:
+    if uploaded_file1 is not None:
+        if uploaded_file2 is not None:
+            def main_page(uploaded_file = uploaded_file,uploaded_file1 = uploaded_file1,uploaded_file2 = uploaded_file2):
+                #create_space(1)
+                with st.expander(label="# To Compare different Summarization and Provide feedback on what good will look like", expanded=False):
+                    st.markdown("""
+
+                    1) Upload Summary of Representative Document
+
+                    2) Upload Document Based Concept Modelled File 
+
+                    3) Upload Summary of Non- Representative Document
+
+                    4) Observe and Provide Comment
+                    """)
+                "---"
+
+                st.markdown("<h3 style='text-align: center; color: grey;'> Summary Comparision Tool </h3>", unsafe_allow_html=True)
+                col1, col2, col3, col4, col5 = st.columns([1,1,1,1,1])
+                
+                df = pd.read_csv(uploaded_file)
+                df['User_Input'] = ''
+                df1 = pd.read_csv(uploaded_file1)
+                df2 = pd.read_csv(uploaded_file2)
+                concept_option = st.sidebar.selectbox(
+                'Concept Selection',
+                (df['Topics'].unique()))
+
+                #### Type 1
+                col1.markdown("<h5 style='text-align: center; color: grey;'> Representative Docs base Summary (Problem-Solution Structure) </h5>", unsafe_allow_html=True)
+                do1 = df[(df['Topics']==concept_option) & (df['Summary Type']=='Problem-Solution Structure')]['Summary Variants'].reset_index(drop=True)[0]
+                col1.write(do1)
+
+                with col1:
+                    exapnder = st.expander("Document Used")
+                    do11 = df1[(df1['CustomName']==concept_option) & (df1['Representative_document']==True)]['Document'].reset_index(drop=True)
+                    exapnder.write(pd.DataFrame(do11).to_html(escape=False), unsafe_allow_html=True)
+
+                
+                col1.markdown("<h5 style='text-align: center; color: grey;'> Non-Representative Docs base Summary(Problem-Solution Structure) </h5>", unsafe_allow_html=True)
+                do111 = df2[(df2['Topics']==concept_option) & (df2['Summary Type']=='Problem-Solution Structure')]['Summary Variants'].reset_index(drop=True)[0]
+                col1.write(do111)
+
+                with col1:
+                    exapnder = st.expander("Document Used")
+                    do11 = df1[(df1['CustomName']==concept_option) & (df1['Representative_document']==False)]['Document'].reset_index(drop=True)
+                    exapnder.write(pd.DataFrame(do11).to_html(escape=False), unsafe_allow_html=True)
+
+
+                #### Type 2
+                col2.markdown("<h5 style='text-align: center; color: grey;'> Representative Docs base Summary (Hierarchy and Structure) </h5>", unsafe_allow_html=True)
+                do1 = df[(df['Topics']==concept_option) & (df['Summary Type']=='Hierarchy and Structure')]['Summary Variants'].reset_index(drop=True)[0]
+                col2.write(do1)
+
+                with col2:
+                    exapnder = st.expander("Document Used")
+                    do11 = df1[(df1['CustomName']==concept_option) & (df1['Representative_document']==True)]['Document'].reset_index(drop=True)
+                    exapnder.write(pd.DataFrame(do11).to_html(escape=False), unsafe_allow_html=True)
+
+                
+                col2.markdown("<h5 style='text-align: center; color: grey;'> Non-Representative Docs base Summary(Hierarchy and Structure) </h5>", unsafe_allow_html=True)
+                do111 = df2[(df2['Topics']==concept_option) & (df2['Summary Type']=='Hierarchy and Structure')]['Summary Variants'].reset_index(drop=True)[0]
+                col2.write(do111)
+
+                with col2:
+                    exapnder = st.expander("Document Used")
+                    do11 = df1[(df1['CustomName']==concept_option) & (df1['Representative_document']==False)]['Document'].reset_index(drop=True)
+                    exapnder.write(pd.DataFrame(do11).to_html(escape=False), unsafe_allow_html=True)
+
+
+                #### Type 3
+                col3.markdown("<h5 style='text-align: center; color: grey;'> Representative Docs base Summary (Logical Flow of Arguments) </h5>", unsafe_allow_html=True)
+                do1 = df[(df['Topics']==concept_option) & (df['Summary Type']=='Logical Flow of Arguments')]['Summary Variants'].reset_index(drop=True)[0]
+                col3.write(do1)
+
+                with col3:
+                    exapnder = st.expander("Document Used")
+                    do11 = df1[(df1['CustomName']==concept_option) & (df1['Representative_document']==True)]['Document'].reset_index(drop=True)
+                    exapnder.write(pd.DataFrame(do11).to_html(escape=False), unsafe_allow_html=True)
+
+                
+                col3.markdown("<h5 style='text-align: center; color: grey;'> Non-Representative Docs base Summary(Logical Flow of Arguments) </h5>", unsafe_allow_html=True)
+                do111 = df2[(df2['Topics']==concept_option) & (df2['Summary Type']=='Logical Flow of Arguments')]['Summary Variants'].reset_index(drop=True)[0]
+                col3.write(do111)
+
+                with col3:
+                    exapnder = st.expander("Document Used")
+                    do11 = df1[(df1['CustomName']==concept_option) & (df1['Representative_document']==False)]['Document'].reset_index(drop=True)
+                    exapnder.write(pd.DataFrame(do11).to_html(escape=False), unsafe_allow_html=True)
+
+
+                #### Type 4
+                col4.markdown("<h5 style='text-align: center; color: grey;'> Representative Docs base Summary (Retrospectives and Prospectives) </h5>", unsafe_allow_html=True)
+                do1 = df[(df['Topics']==concept_option) & (df['Summary Type']=='Retrospectives and Prospectives')]['Summary Variants'].reset_index(drop=True)[0]
+                col4.write(do1)
+
+                with col4:
+                    exapnder = st.expander("Document Used")
+                    do11 = df1[(df1['CustomName']==concept_option) & (df1['Representative_document']==True)]['Document'].reset_index(drop=True)
+                    exapnder.write(pd.DataFrame(do11).to_html(escape=False), unsafe_allow_html=True)
+
+                
+                col4.markdown("<h5 style='text-align: center; color: grey;'> Non-Representative Docs base Summary(Retrospectives and Prospectivese) </h5>", unsafe_allow_html=True)
+                do111 = df2[(df2['Topics']==concept_option) & (df2['Summary Type']=='Retrospectives and Prospectives')]['Summary Variants'].reset_index(drop=True)[0]
+                col4.write(do111)
+
+                with col4:
+                    exapnder = st.expander("Document Used")
+                    do11 = df1[(df1['CustomName']==concept_option) & (df1['Representative_document']==False)]['Document'].reset_index(drop=True)
+                    exapnder.write(pd.DataFrame(do11).to_html(escape=False), unsafe_allow_html=True)
+
+
+                #### Type 5
+                col5.markdown("<h5 style='text-align: center; color: grey;'> Representative Docs base Summary (Correlations and Associations) </h5>", unsafe_allow_html=True)
+                do1 = df[(df['Topics']==concept_option) & (df['Summary Type']=='Correlations and Associations')]['Summary Variants'].reset_index(drop=True)[0]
+                col5.write(do1)
+
+                with col5:
+                    exapnder = st.expander("Document Used")
+                    do11 = df1[(df1['CustomName']==concept_option) & (df1['Representative_document']==True)]['Document'].reset_index(drop=True)
+                    exapnder.write(pd.DataFrame(do11).to_html(escape=False), unsafe_allow_html=True)
+
+                
+                col5.markdown("<h5 style='text-align: center; color: grey;'> Non-Representative Docs base Summary(Correlations and Associations) </h5>", unsafe_allow_html=True)
+                do111 = df2[(df2['Topics']==concept_option) & (df2['Summary Type']=='Correlations and Associations')]['Summary Variants'].reset_index(drop=True)[0]
+                col5.write(do111)
+
+                with col5:
+                    exapnder = st.expander("Document Used")
+                    do11 = df1[(df1['CustomName']==concept_option) & (df1['Representative_document']==False)]['Document'].reset_index(drop=True)
+                    exapnder.write(pd.DataFrame(do11).to_html(escape=False), unsafe_allow_html=True)
+
+            # def concept_view_1():
+            #     loaded_model = BERTopic.load("./final_submission_1")
+            #     loaded_model.visualize_documents(titles, reduced_embeddings=reduced_embeddings, hide_annotations=True, hide_document_hover=False, custom_labels=True)
+
+
+
+
+
+
+    page_names_to_funcs = {
+        "Summary Analysis": main_page,
+    }
+
+    selected_page = st.sidebar.selectbox("# Analysis Selection", page_names_to_funcs.keys())
+    page_names_to_funcs[selected_page]()
