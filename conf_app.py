@@ -63,6 +63,7 @@ if uploaded_file is not None:
                 col1.write(do1)
                 feedback = collector.st_feedback(
                 	feedback_type="thumbs",
+                    model='llama-13b',
                 	#path="thumbs_feedback.json"
                 )
                 # print out the feedback object as a dictionary in your app
