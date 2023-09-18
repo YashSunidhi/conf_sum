@@ -65,7 +65,7 @@ if uploaded_file is not None:
                 with col1: 
                     feedback = streamlit_feedback(
                         feedback_type="thumbs",
-                        optional_text_label="[Optional] Please provide an explanation",
+                        optional_text_label="[Optional] Please provide an explanation",key=0,
                     )
                     feedback
 
@@ -81,8 +81,8 @@ if uploaded_file is not None:
                 col1.write(do111)
                 with col1: 
                     feedback1 = streamlit_feedback(
-                        feedback_type1="thumbs",
-                        optional_text_label="[Optional] Please provide an explanation",
+                        feedback_type="thumbs",
+                        optional_text_label="[Optional] Please provide an explanation",key=1,
                     )
                     feedback1
 
@@ -99,7 +99,7 @@ if uploaded_file is not None:
                 with col2: 
                     feedback2 = streamlit_feedback(
                         feedback_type="thumbs",
-                        optional_text_label="[Optional] Please provide an explanation",
+                        optional_text_label="[Optional] Please provide an explanation",key=2,
                     )
                     feedback2
 
@@ -115,7 +115,7 @@ if uploaded_file is not None:
                 with col2: 
                     feedback3 = streamlit_feedback(
                         feedback_type="thumbs",
-                        optional_text_label="[Optional] Please provide an explanation",
+                        optional_text_label="[Optional] Please provide an explanation",key=3,
                     )
                     feedback3
 
@@ -133,7 +133,7 @@ if uploaded_file is not None:
                 with col3: 
                     feedback4 = streamlit_feedback(
                         feedback_type="thumbs",
-                        optional_text_label="[Optional] Please provide an explanation",
+                        optional_text_label="[Optional] Please provide an explanation",key=4,
                     )
                     feedback4
 
@@ -150,7 +150,7 @@ if uploaded_file is not None:
                 with col3: 
                     feedback5 = streamlit_feedback(
                         feedback_type="thumbs",
-                        optional_text_label="[Optional] Please provide an explanation",
+                        optional_text_label="[Optional] Please provide an explanation",key=5,
                     )
                     feedback5
 
@@ -168,7 +168,7 @@ if uploaded_file is not None:
                 with col4: 
                     feedback6 = streamlit_feedback(
                         feedback_type="thumbs",
-                        optional_text_label="[Optional] Please provide an explanation",
+                        optional_text_label="[Optional] Please provide an explanation",key=6,
                     )
                     feedback6
 
@@ -185,7 +185,7 @@ if uploaded_file is not None:
                 with col4: 
                     feedback7 = streamlit_feedback(
                         feedback_type="thumbs",
-                        optional_text_label="[Optional] Please provide an explanation",
+                        optional_text_label="[Optional] Please provide an explanation",key=7,
                     )
                     feedback7
                 with col4:
@@ -202,7 +202,7 @@ if uploaded_file is not None:
                 with col5: 
                     feedback8 = streamlit_feedback(
                         feedback_type="thumbs",
-                        optional_text_label="[Optional] Please provide an explanation",
+                        optional_text_label="[Optional] Please provide an explanation",key=8,
                     )
                     feedback8
 
@@ -219,7 +219,7 @@ if uploaded_file is not None:
                 with col5: 
                     feedback9 = streamlit_feedback(
                         feedback_type="thumbs",
-                        optional_text_label="[Optional] Please provide an explanation",
+                        optional_text_label="[Optional] Please provide an explanation",key=9,
                     )
                     feedback9
 
