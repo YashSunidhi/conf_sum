@@ -181,7 +181,7 @@ if uploaded_file is not None:
                 fig1 = loaded_model.visualize_hierarchy(hierarchical_topics=hierarchical_topics,custom_labels=True)
                 st.plotly_chart(fig1, theme=None, use_container_width=True)
                 st.markdown("<h4 style='text-align: center; color: black;'> Progressive View in Hierarchical Distribution </h4>", unsafe_allow_html=True)
-                fig2 = topic_model.visualize_hierarchical_documents(abstracts, hierarchical_topics, reduced_embeddings=reduced_embeddings,custom_labels=True)
+                fig2 = loaded_model.visualize_hierarchical_documents(abstracts, hierarchical_topics, reduced_embeddings=reduced_embeddings,custom_labels=True)
                 st.plotly_chart(fig2, theme=None, use_container_width=True)
 
 
