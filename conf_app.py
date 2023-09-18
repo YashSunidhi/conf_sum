@@ -8,6 +8,7 @@ import plotly.express as px
 
 from umap import UMAP
 from hdbscan import HDBSCAN
+from bertopic import BERTopic
 
 from sklearn.feature_extraction.text import CountVectorizer
 from bertopic.representation import PartOfSpeech, KeyBERTInspired, MaximalMarginalRelevance, OpenAI
