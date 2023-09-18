@@ -50,9 +50,9 @@ if uploaded_file is not None:
                 'Concept Selection',
                 (df['Topics'].unique()))
                 collector = FeedbackCollector(
-                email='smnitrkl50@gmail.com,
-                password='Ram@2107',
-                project="default"
+                    email='smnitrkl50@gmail.com',
+                    password='Ram@2107',
+                    project="default"
                 )
             
 
