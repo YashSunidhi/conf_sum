@@ -219,7 +219,7 @@ if uploaded_file is not None:
                     # 1. authenticate with trubrics
                     collector = FeedbackCollector(email='smnitrkl50@gmail.com', password='Ram@2107', project="default")
                     
-                    if st.button("Refresh"):
+                    if st.button("Refresh",key = '30'):
                         st.session_state.feedback_key += 1
                         st.session_state.logged_prompt = None
                         st.experimental_rerun()
@@ -270,7 +270,7 @@ if uploaded_file is not None:
                     # 1. authenticate with trubrics
                     collector = FeedbackCollector(email='smnitrkl50@gmail.com', password='Ram@2107', project="default")
                     
-                    if st.button("Refresh"):
+                    if st.button("Refresh",key = '40'):
                         st.session_state.feedback_key += 1
                         st.session_state.logged_prompt = None
                         st.experimental_rerun()
@@ -320,7 +320,7 @@ if uploaded_file is not None:
                     # 1. authenticate with trubrics
                     collector = FeedbackCollector(email='smnitrkl50@gmail.com', password='Ram@2107', project="default")
                     
-                    if st.button("Refresh"):
+                    if st.button("Refresh",key = '50'):
                         st.session_state.feedback_key += 1
                         st.session_state.logged_prompt = None
                         st.experimental_rerun()
@@ -371,7 +371,7 @@ if uploaded_file is not None:
                     # 1. authenticate with trubrics
                     collector = FeedbackCollector(email='smnitrkl50@gmail.com', password='Ram@2107', project="default")
                     
-                    if st.button("Refresh"):
+                    if st.button("Refresh",key = '60'):
                         st.session_state.feedback_key += 1
                         st.session_state.logged_prompt = None
                         st.experimental_rerun()
@@ -421,7 +421,7 @@ if uploaded_file is not None:
                     # 1. authenticate with trubrics
                     collector = FeedbackCollector(email='smnitrkl50@gmail.com', password='Ram@2107', project="default")
                     
-                    if st.button("Refresh"):
+                    if st.button("Refresh",key = '70'):
                         st.session_state.feedback_key += 1
                         st.session_state.logged_prompt = None
                         st.experimental_rerun()
@@ -469,7 +469,7 @@ if uploaded_file is not None:
                     # 1. authenticate with trubrics
                     collector = FeedbackCollector(email='smnitrkl50@gmail.com', password='Ram@2107', project="default")
                     
-                    if st.button("Refresh"):
+                    if st.button("Refresh",key = '80'):
                         st.session_state.feedback_key += 1
                         st.session_state.logged_prompt = None
                         st.experimental_rerun()
@@ -519,7 +519,7 @@ if uploaded_file is not None:
                     # 1. authenticate with trubrics
                     collector = FeedbackCollector(email='smnitrkl50@gmail.com', password='Ram@2107', project="default")
                     
-                    if st.button("Refresh"):
+                    if st.button("Refresh",key = '90'):
                         st.session_state.feedback_key += 1
                         st.session_state.logged_prompt = None
                         st.experimental_rerun()
