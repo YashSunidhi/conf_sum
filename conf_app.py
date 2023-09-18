@@ -175,14 +175,27 @@ if uploaded_file is not None:
                 #loaded_model.visualize_documents(titles, reduced_embeddings=reduced_embeddings, hide_annotations=True, hide_document_hover=False, custom_labels=True)
                 st.markdown("<h4 style='text-align: center; color: black;'> Concept View in Spacial Distribution </h4>", unsafe_allow_html=True)
                 fig = loaded_model.visualize_documents(titles, reduced_embeddings=reduced_embeddings, hide_annotations=True, hide_document_hover=False, custom_labels=True)
-                st.plotly_chart(fig, theme=None, use_container_width=True)
+                #st.plotly_chart(fig, theme=None, use_container_width=True)
                 st.markdown("<h4 style='text-align: center; color: black;'> Concept View in Hierarchical Distribution </h4>", unsafe_allow_html=True)
                 hierarchical_topics = loaded_model.hierarchical_topics(abstracts)
                 fig1 = loaded_model.visualize_hierarchy(hierarchical_topics=hierarchical_topics,custom_labels=True)
-                st.plotly_chart(fig1, theme=None, use_container_width=True)
+                #st.plotly_chart(fig1, theme=None, use_container_width=True)
                 st.markdown("<h4 style='text-align: center; color: black;'> Progressive View in Hierarchical Distribution </h4>", unsafe_allow_html=True)
                 fig2 = loaded_model.visualize_hierarchical_documents(abstracts, hierarchical_topics, reduced_embeddings=reduced_embeddings,custom_labels=True)
-                st.plotly_chart(fig2, theme=None, use_container_width=True)
+                #st.plotly_chart(fig2, theme=None, use_container_width=True)
+
+                tab1, tab2, tab3 = st.tabs(["Concept View in Spacial Distribution", "Concept View in Hierarchical Distribution","Progressive View in Hierarchical Distribution"])
+                with tab1:
+                    # Use the Streamlit theme.
+                    # This is the default. So you can also omit the theme argument.
+                    st.plotly_chart(fig, theme="streamlit", use_container_width=True)
+                with tab2:
+                    # Use the native Plotly theme.
+                    st.plotly_chart(fig, theme=None, use_container_width=True)
+
+                with tab3:
+                    # Use the native Plotly theme.
+                    st.plotly_chart(fig, theme=None, use_container_width=True)
 
 
 
