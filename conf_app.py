@@ -153,6 +153,7 @@ if uploaded_file is not None:
                     exapnder.write(pd.DataFrame(do11).to_html(escape=False), unsafe_allow_html=True)
 
             def concept_view_1():
+               
                 df = pd.read_csv('./test_conf_summ/final_doc_input.csv')
                 abstracts = df['Full Text'].to_list()
                 titles = df["Title"].to_list()
@@ -172,8 +173,16 @@ if uploaded_file is not None:
 
                 loaded_model = BERTopic.load("./test_conf_summ")
                 #loaded_model.visualize_documents(titles, reduced_embeddings=reduced_embeddings, hide_annotations=True, hide_document_hover=False, custom_labels=True)
+                st.markdown("<h4 style='text-align: center; color: black;'> Concept View in Spacial Distribution </h4>", unsafe_allow_html=True)
                 fig = loaded_model.visualize_documents(titles, reduced_embeddings=reduced_embeddings, hide_annotations=True, hide_document_hover=False, custom_labels=True)
                 st.plotly_chart(fig, theme=None, use_container_width=True)
+                st.markdown("<h4 style='text-align: center; color: black;'> Concept View in Hierarchical Distribution </h4>", unsafe_allow_html=True)
+                hierarchical_topics = loaded_model.hierarchical_topics(abstracts)
+                fig1 = loaded_model.visualize_hierarchy(hierarchical_topics=hierarchical_topics,custom_labels=True)
+                st.plotly_chart(fig1, theme=None, use_container_width=True)
+                st.markdown("<h4 style='text-align: center; color: black;'> Progressive View in Hierarchical Distribution </h4>", unsafe_allow_html=True)
+                fig2 = topic_model.visualize_hierarchical_documents(abstracts, hierarchical_topics, reduced_embeddings=reduced_embeddings,custom_labels=True)
+                st.plotly_chart(fig2, theme=None, use_container_width=True)
 
 
 
