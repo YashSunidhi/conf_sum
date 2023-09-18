@@ -153,11 +153,10 @@ if uploaded_file is not None:
                     exapnder.write(pd.DataFrame(do11).to_html(escape=False), unsafe_allow_html=True)
 
             def concept_view_1():
-                loaded_model = BERTopic.load("./test_conf_summ")
-                loaded_model.visualize_documents(titles, reduced_embeddings=reduced_embeddings, hide_annotations=True, hide_document_hover=False, custom_labels=True)
                 df = pd.read_csv('./test_conf_summ/final_doc_input.csv')
                 abstracts = df['Full Text'].to_list()
                 titles = df["Title"].to_list()
+
                 # Pre-calculate embeddings
                 embedding_model = SentenceTransformer("BAAI/bge-base-en")
                 embeddings = embedding_model.encode(abstracts, show_progress_bar=True)
@@ -170,7 +169,10 @@ if uploaded_file is not None:
                 
                 # Pre-reduce embeddings for visualization purposes
                 reduced_embeddings = UMAP(n_neighbors=10, n_components=5, min_dist=0.0, metric='cosine', random_state=42).fit_transform(embeddings)
-                fig = topic_model.visualize_documents(titles, reduced_embeddings=reduced_embeddings, hide_annotations=True, hide_document_hover=False, custom_labels=True)
+
+                loaded_model = BERTopic.load("./test_conf_summ")
+                #loaded_model.visualize_documents(titles, reduced_embeddings=reduced_embeddings, hide_annotations=True, hide_document_hover=False, custom_labels=True)
+                fig = loaded_model.visualize_documents(titles, reduced_embeddings=reduced_embeddings, hide_annotations=True, hide_document_hover=False, custom_labels=True)
                 st.plotly_chart(fig, theme=None, use_container_width=True)
 
 
