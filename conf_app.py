@@ -63,7 +63,7 @@ if uploaded_file is not None:
                 col1.write(do1)
 
                 messages = str(do1)
-                feedback_key = True
+                feedback_key = ''
 
                 for n, msg in enumerate(messages):
                     if feedback_key not in st.session_state:
