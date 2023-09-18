@@ -62,6 +62,7 @@ if uploaded_file is not None:
                 do1 = df[(df['Topics']==concept_option) & (df['Summary Type']=='Problem-Solution Structure')]['Summary Variants'].reset_index(drop=True)[0]
                 col1.write(do1)
                 feedback = collector.st_feedback(
+                    component="default",
                 	feedback_type="thumbs",
                     model='llama-13b',
                 	#path="thumbs_feedback.json"
