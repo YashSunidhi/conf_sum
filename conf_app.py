@@ -80,7 +80,7 @@ if uploaded_file is not None:
                     #st.write(f"#### :orange[Example user prompt: {prompt}]")
                     
                     
-                    if st.button("Generate response"):
+                    if st.button("To share FEEDBACK, Click here!!"):
                         # 2. log a user prompt & model response
                         st.session_state.logged_prompt = collector.log_prompt(
                             config_model={"model": "llama-13b"},
@@ -112,11 +112,44 @@ if uploaded_file is not None:
                     do111 = df2[(df2['Topics']==concept_option) & (df2['Summary Type']=='Problem-Solution Structure')]['Summary Variants'].reset_index(drop=True)[0]
                     st.write(do111)
                  
-                    feedback1 = streamlit_feedback(
-                        feedback_type="thumbs",
-                        optional_text_label="[Optional] Please provide an explanation",key=1,
-                    )
-                    feedback1
+                    if "logged_prompt" not in st.session_state:
+                        st.session_state.logged_prompt = None
+                    if "feedback_key" not in st.session_state:
+                        st.session_state.feedback_key = 0
+                    
+                    # 1. authenticate with trubrics
+                    collector = FeedbackCollector(email='smnitrkl50@gmail.com', password='Ram@2107', project="default")
+                    
+                    if st.button("Refresh"):
+                        st.session_state.feedback_key += 1
+                        st.session_state.logged_prompt = None
+                        st.experimental_rerun()
+                    
+                    prompt = "Tell me a joke"
+                    generation = "Why did the chicken cross the road? To get to the other side."
+                    #st.write(f"#### :orange[Example user prompt: {prompt}]")
+                    
+                    
+                    if st.button("To share FEEDBACK, Click here!!"):
+                        # 2. log a user prompt & model response
+                        st.session_state.logged_prompt = collector.log_prompt(
+                            config_model={"model": "llama-13b"},
+                            prompt=prompt,
+                            generation=generation,
+                        )
+                    
+                    if st.session_state.logged_prompt:
+                        #st.write(f"#### :blue[Example model generation: {generation}]")
+                        # 3. log some user feedback
+                        user_feedback = collector.st_feedback(
+                            component="default",
+                            feedback_type="thumbs",
+                            open_feedback_label="[Optional] Provide additional feedback",
+                            model=st.session_state.logged_prompt.config_model.model,
+                            prompt_id=st.session_state.logged_prompt.id,
+                            key=st.session_state.feedback_key,
+                            align="flex-start",
+                        )
 
                
                     exapnder = st.expander("Document Used")
