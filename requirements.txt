@@ -1,4 +1,5 @@
 streamlit
+trubrics[streamlit]==1.6.0
 streamlit-feedback
 PyMuPDF==1.22.3
 pdfplumber==0.8.0
