@@ -81,7 +81,7 @@ if uploaded_file is not None:
                 col1.write(do111)
                 with col1: 
                     feedback1 = streamlit_feedback(
-                        feedback_type="thumbs",
+                        feedback_type1="thumbs",
                         optional_text_label="[Optional] Please provide an explanation",
                     )
                     feedback1
