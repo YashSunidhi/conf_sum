@@ -2,7 +2,16 @@ import streamlit as st
 import pandas as pd
 import os
 import ast
-#from bertopic import BERTopic
+from sentence_transformers import SentenceTransformer
+from bertopic.representation import KeyBERTInspired, MaximalMarginalRelevance, TextGeneration
+import plotly.express as px
+
+from umap import UMAP
+from hdbscan import HDBSCAN
+
+from sklearn.feature_extraction.text import CountVectorizer
+from bertopic.representation import PartOfSpeech, KeyBERTInspired, MaximalMarginalRelevance, OpenAI
+
 st.set_page_config(layout="wide")
 st.markdown("<h1 style='text-align: center; color: black;'> Conference Assesment Tool </h1>", unsafe_allow_html=True)
 st.markdown("<h6 style='text-align: center; color: black;'> Understanding Discussion, Observation and Opinions </h6>", unsafe_allow_html=True)
@@ -142,9 +151,27 @@ if uploaded_file is not None:
                     do11 = df1[(df1['CustomName']==concept_option) & (df1['Representative_document']==False)]['Document'].reset_index(drop=True)
                     exapnder.write(pd.DataFrame(do11).to_html(escape=False), unsafe_allow_html=True)
 
-            # def concept_view_1():
-            #     loaded_model = BERTopic.load("./final_submission_1")
-            #     loaded_model.visualize_documents(titles, reduced_embeddings=reduced_embeddings, hide_annotations=True, hide_document_hover=False, custom_labels=True)
+            def concept_view_1():
+                loaded_model = BERTopic.load("./final_submission_1")
+                loaded_model.visualize_documents(titles, reduced_embeddings=reduced_embeddings, hide_annotations=True, hide_document_hover=False, custom_labels=True)
+                df = pd.read_csv('./test_conf_summ/final_doc_input.csv')
+                abstracts = df['Full Text'].to_list()
+                titles = df["Title"].to_list()
+                # Pre-calculate embeddings
+                embedding_model = SentenceTransformer("BAAI/bge-base-en")
+                embeddings = embedding_model.encode(abstracts, show_progress_bar=True)
+                
+                
+                ## Cluster
+                
+                umap_model = UMAP(n_neighbors=7, n_components=5, min_dist=0.0, metric='cosine', random_state=42)
+                hdbscan_model = HDBSCAN(min_cluster_size=7,min_samples=7, gen_min_span_tree=True, prediction_data=True)
+                
+                # Pre-reduce embeddings for visualization purposes
+                reduced_embeddings = UMAP(n_neighbors=10, n_components=5, min_dist=0.0, metric='cosine', random_state=42).fit_transform(embeddings)
+                fig = topic_model.visualize_documents(titles, reduced_embeddings=reduced_embeddings, hide_annotations=True, hide_document_hover=False, custom_labels=True)
+                st.plotly_chart(fig, theme=None, use_container_width=True)
+
 
 
 
@@ -152,6 +179,7 @@ if uploaded_file is not None:
 
 
     page_names_to_funcs = {
+        "Concept Analysis": concept_view_1,
         "Summary Analysis": main_page,
     }
 
