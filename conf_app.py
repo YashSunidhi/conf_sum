@@ -71,7 +71,7 @@ if uploaded_file is not None:
                         component="default",
                         feedback_type="thumbs",
                         open_feedback_label="[Optional] Provide additional feedback",
-                        model='llama-13b,
+                        model='llama-13b',
                         key=feedback_key,
                         prompt_id=st.session_state.prompt_ids[int(n / 2) - 1],
                     )
