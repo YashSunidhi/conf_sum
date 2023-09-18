@@ -61,9 +61,9 @@ if uploaded_file is not None:
                 col1.markdown("<h5 style='text-align: center; color: grey;'> Representative Docs base Summary (Problem-Solution Structure) </h5>", unsafe_allow_html=True)
                 do1 = df[(df['Topics']==concept_option) & (df['Summary Type']=='Problem-Solution Structure')]['Summary Variants'].reset_index(drop=True)[0]
                 col1.write(do1)
-                if "feedback_key" not in st.session_state:
-                    st.session_state.feedback_key = 0
+
                 messages = str(do1)
+                feedback_key = True
 
                 for n, msg in enumerate(messages):
                     if feedback_key not in st.session_state:
