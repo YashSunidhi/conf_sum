@@ -74,7 +74,6 @@ if uploaded_file is not None:
                         open_feedback_label="[Optional] Provide additional feedback",
                         model='llama-13b',
                         key=feedback_key,
-                        prompt_id=st.session_state.prompt_ids[int(n / 2) - 1],
                     )
                     if feedback:
                         with st.sidebar:
