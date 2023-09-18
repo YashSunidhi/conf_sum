@@ -12,6 +12,8 @@ from bertopic import BERTopic
 
 from sklearn.feature_extraction.text import CountVectorizer
 from bertopic.representation import PartOfSpeech, KeyBERTInspired, MaximalMarginalRelevance, OpenAI
+import streamlit as st
+from trubrics.integrations.streamlit import FeedbackCollector
 
 st.set_page_config(layout="wide")
 st.markdown("<h1 style='text-align: center; color: black;'> Conference Assesment Tool </h1>", unsafe_allow_html=True)
@@ -47,11 +49,27 @@ if uploaded_file is not None:
                 concept_option = st.sidebar.selectbox(
                 'Concept Selection',
                 (df['Topics'].unique()))
+                collector = FeedbackCollector(
+                email='smnitrkl50@gmail.com,
+                password='Ram@2107',
+                project="default"
+                )
+            
 
                 #### Type 1
                 col1.markdown("<h5 style='text-align: center; color: grey;'> Representative Docs base Summary (Problem-Solution Structure) </h5>", unsafe_allow_html=True)
                 do1 = df[(df['Topics']==concept_option) & (df['Summary Type']=='Problem-Solution Structure')]['Summary Variants'].reset_index(drop=True)[0]
                 col1.write(do1)
+
+                user_feedback = collector.st_feedback(
+                    component="default",
+                    feedback_type="thumbs",
+                    open_feedback_label="[Optional] Provide additional feedback",
+                    model="Summary",
+                )
+            
+                if user_feedback:
+                    col1.write(user_feedback)
 
                 with col1:
                     exapnder = st.expander("Document Used")
@@ -204,7 +222,7 @@ if uploaded_file is not None:
 
 
     page_names_to_funcs = {
-        "Concept Analysis": concept_view_1,
+        #"Concept Analysis": concept_view_1,
         "Summary Analysis": main_page,
     }
 
