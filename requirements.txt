@@ -16,3 +16,4 @@ pypdf
 auto_gptq
 replicate
 bertopic
+plotly
