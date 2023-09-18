@@ -14,6 +14,7 @@ from sklearn.feature_extraction.text import CountVectorizer
 from bertopic.representation import PartOfSpeech, KeyBERTInspired, MaximalMarginalRelevance, OpenAI
 import streamlit as st
 from trubrics.integrations.streamlit import FeedbackCollector
+from streamlit_feedback import streamlit_feedback
 
 st.set_page_config(layout="wide")
 st.markdown("<h1 style='text-align: center; color: black;'> Conference Assesment Tool </h1>", unsafe_allow_html=True)
@@ -61,14 +62,11 @@ if uploaded_file is not None:
                 col1.markdown("<h5 style='text-align: center; color: grey;'> Representative Docs base Summary (Problem-Solution Structure) </h5>", unsafe_allow_html=True)
                 do1 = df[(df['Topics']==concept_option) & (df['Summary Type']=='Problem-Solution Structure')]['Summary Variants'].reset_index(drop=True)[0]
                 col1.write(do1)
-                feedback = collector.st_feedback(
-                    component="default",
-                	feedback_type="thumbs",
-                    model='llama-13b',
-                	#path="thumbs_feedback.json"
+                feedback = streamlit_feedback(
+                    feedback_type="thumbs",
+                    optional_text_label="[Optional] Please provide an explanation",
                 )
-                # print out the feedback object as a dictionary in your app
-                feedback.dict() if feedback else None
+                feedback
 
 
                 with col1:
