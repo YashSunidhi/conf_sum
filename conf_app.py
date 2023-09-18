@@ -63,17 +63,15 @@ if uploaded_file is not None:
                 col1.write(do1)
 
                 messages = str(do1)
-                feedback_key = ''
+    
 
                 for n, msg in enumerate(messages):
-                    if feedback_key not in st.session_state:
-                        st.session_state[feedback_key] = None
                     feedback = collector.st_feedback(
                         component="default",
                         feedback_type="thumbs",
                         open_feedback_label="[Optional] Provide additional feedback",
                         model='llama-13b',
-                        key=feedback_key,
+                        #key=feedback_key,
                     )
                     if feedback:
                         with st.sidebar:
