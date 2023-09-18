@@ -1,5 +1,5 @@
 streamlit
-streamlit_chat
+streamlit-feedback
 PyMuPDF==1.22.3
 pdfplumber==0.8.0
 pdf2image==1.16.2
