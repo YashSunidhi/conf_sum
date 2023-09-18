@@ -280,11 +280,11 @@ if uploaded_file is not None:
                     st.plotly_chart(fig, theme="streamlit", use_container_width=True)
                 with tab2:
                     # Use the native Plotly theme.
-                    st.plotly_chart(fig, theme=None, use_container_width=True)
+                    st.plotly_chart(fig1, theme=None, use_container_width=True)
 
                 with tab3:
                     # Use the native Plotly theme.
-                    st.plotly_chart(fig, theme=None, use_container_width=True)
+                    st.plotly_chart(fig2, theme=None, use_container_width=True)
 
 
 
