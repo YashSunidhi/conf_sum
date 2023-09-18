@@ -79,6 +79,12 @@ if uploaded_file is not None:
                 col1.markdown("<h5 style='text-align: center; color: grey;'> Non-Representative Docs base Summary(Problem-Solution Structure) </h5>", unsafe_allow_html=True)
                 do111 = df2[(df2['Topics']==concept_option) & (df2['Summary Type']=='Problem-Solution Structure')]['Summary Variants'].reset_index(drop=True)[0]
                 col1.write(do111)
+                with col1: 
+                    feedback1 = streamlit_feedback(
+                        feedback_type="thumbs",
+                        optional_text_label="[Optional] Please provide an explanation",
+                    )
+                    feedback1
 
                 with col1:
                     exapnder = st.expander("Document Used")
@@ -90,6 +96,12 @@ if uploaded_file is not None:
                 col2.markdown("<h5 style='text-align: center; color: grey;'> Representative Docs base Summary (Hierarchy and Structure) </h5>", unsafe_allow_html=True)
                 do1 = df[(df['Topics']==concept_option) & (df['Summary Type']=='Hierarchy and Structure')]['Summary Variants'].reset_index(drop=True)[0]
                 col2.write(do1)
+                with col2: 
+                    feedback2 = streamlit_feedback(
+                        feedback_type="thumbs",
+                        optional_text_label="[Optional] Please provide an explanation",
+                    )
+                    feedback2
 
                 with col2:
                     exapnder = st.expander("Document Used")
@@ -100,6 +112,12 @@ if uploaded_file is not None:
                 col2.markdown("<h5 style='text-align: center; color: grey;'> Non-Representative Docs base Summary(Hierarchy and Structure) </h5>", unsafe_allow_html=True)
                 do111 = df2[(df2['Topics']==concept_option) & (df2['Summary Type']=='Hierarchy and Structure')]['Summary Variants'].reset_index(drop=True)[0]
                 col2.write(do111)
+                with col2: 
+                    feedback3 = streamlit_feedback(
+                        feedback_type="thumbs",
+                        optional_text_label="[Optional] Please provide an explanation",
+                    )
+                    feedback3
 
                 with col2:
                     exapnder = st.expander("Document Used")
@@ -112,6 +130,13 @@ if uploaded_file is not None:
                 do1 = df[(df['Topics']==concept_option) & (df['Summary Type']=='Logical Flow of Arguments')]['Summary Variants'].reset_index(drop=True)[0]
                 col3.write(do1)
 
+                with col3: 
+                    feedback4 = streamlit_feedback(
+                        feedback_type="thumbs",
+                        optional_text_label="[Optional] Please provide an explanation",
+                    )
+                    feedback4
+
                 with col3:
                     exapnder = st.expander("Document Used")
                     do11 = df1[(df1['CustomName']==concept_option) & (df1['Representative_document']==True)]['Document'].reset_index(drop=True)
@@ -121,6 +146,13 @@ if uploaded_file is not None:
                 col3.markdown("<h5 style='text-align: center; color: grey;'> Non-Representative Docs base Summary(Logical Flow of Arguments) </h5>", unsafe_allow_html=True)
                 do111 = df2[(df2['Topics']==concept_option) & (df2['Summary Type']=='Logical Flow of Arguments')]['Summary Variants'].reset_index(drop=True)[0]
                 col3.write(do111)
+
+                with col3: 
+                    feedback5 = streamlit_feedback(
+                        feedback_type="thumbs",
+                        optional_text_label="[Optional] Please provide an explanation",
+                    )
+                    feedback5
 
                 with col3:
                     exapnder = st.expander("Document Used")
@@ -133,6 +165,13 @@ if uploaded_file is not None:
                 do1 = df[(df['Topics']==concept_option) & (df['Summary Type']=='Retrospectives and Prospectives')]['Summary Variants'].reset_index(drop=True)[0]
                 col4.write(do1)
 
+                with col4: 
+                    feedback6 = streamlit_feedback(
+                        feedback_type="thumbs",
+                        optional_text_label="[Optional] Please provide an explanation",
+                    )
+                    feedback6
+
                 with col4:
                     exapnder = st.expander("Document Used")
                     do11 = df1[(df1['CustomName']==concept_option) & (df1['Representative_document']==True)]['Document'].reset_index(drop=True)
@@ -142,7 +181,13 @@ if uploaded_file is not None:
                 col4.markdown("<h5 style='text-align: center; color: grey;'> Non-Representative Docs base Summary(Retrospectives and Prospectivese) </h5>", unsafe_allow_html=True)
                 do111 = df2[(df2['Topics']==concept_option) & (df2['Summary Type']=='Retrospectives and Prospectives')]['Summary Variants'].reset_index(drop=True)[0]
                 col4.write(do111)
-
+                
+                with col4: 
+                    feedback7 = streamlit_feedback(
+                        feedback_type="thumbs",
+                        optional_text_label="[Optional] Please provide an explanation",
+                    )
+                    feedback7
                 with col4:
                     exapnder = st.expander("Document Used")
                     do11 = df1[(df1['CustomName']==concept_option) & (df1['Representative_document']==False)]['Document'].reset_index(drop=True)
@@ -153,6 +198,13 @@ if uploaded_file is not None:
                 col5.markdown("<h5 style='text-align: center; color: grey;'> Representative Docs base Summary (Correlations and Associations) </h5>", unsafe_allow_html=True)
                 do1 = df[(df['Topics']==concept_option) & (df['Summary Type']=='Correlations and Associations')]['Summary Variants'].reset_index(drop=True)[0]
                 col5.write(do1)
+                
+                with col5: 
+                    feedback8 = streamlit_feedback(
+                        feedback_type="thumbs",
+                        optional_text_label="[Optional] Please provide an explanation",
+                    )
+                    feedback8
 
                 with col5:
                     exapnder = st.expander("Document Used")
@@ -164,10 +216,21 @@ if uploaded_file is not None:
                 do111 = df2[(df2['Topics']==concept_option) & (df2['Summary Type']=='Correlations and Associations')]['Summary Variants'].reset_index(drop=True)[0]
                 col5.write(do111)
 
+                with col5: 
+                    feedback9 = streamlit_feedback(
+                        feedback_type="thumbs",
+                        optional_text_label="[Optional] Please provide an explanation",
+                    )
+                    feedback9
+
                 with col5:
                     exapnder = st.expander("Document Used")
                     do11 = df1[(df1['CustomName']==concept_option) & (df1['Representative_document']==False)]['Document'].reset_index(drop=True)
                     exapnder.write(pd.DataFrame(do11).to_html(escape=False), unsafe_allow_html=True)
+
+                col_feed = [feedback, feedback1,feedback2,feedback3,feedback4,feedback5,feedback6,feedback7,feedback8,feedback9]
+                dfeed = pd.DataFrame(col_feed)
+                dfeed.to_csv('feedback.csv')
 
             def concept_view_1():
                
