@@ -94,33 +94,33 @@ if uploaded_file is not None:
                     st.markdown("<h5 style='text-align: center; color: grey;'> Representative Docs base Summary (Hierarchy and Structure) </h5>", unsafe_allow_html=True)
                     do1 = df[(df['Topics']==concept_option) & (df['Summary Type']=='Hierarchy and Structure')]['Summary Variants'].reset_index(drop=True)[0]
                     st.write(do1)
-                    with st: 
-                        feedback2 = streamlit_feedback(
-                            feedback_type="thumbs",
-                            optional_text_label="[Optional] Please provide an explanation",key=2,
-                        )
-                        feedback2
-    
-                    with st:
-                        exapnder = st.expander("Document Used")
-                        do11 = df1[(df1['CustomName']==concept_option) & (df1['Representative_document']==True)]['Document'].reset_index(drop=True)
-                        exapnder.write(pd.DataFrame(do11).to_html(escape=False), unsafe_allow_html=True)
+                 
+                    feedback2 = streamlit_feedback(
+                        feedback_type="thumbs",
+                        optional_text_label="[Optional] Please provide an explanation",key=2,
+                    )
+                    feedback2
+
+           
+                    exapnder = st.expander("Document Used")
+                    do11 = df1[(df1['CustomName']==concept_option) & (df1['Representative_document']==True)]['Document'].reset_index(drop=True)
+                    exapnder.write(pd.DataFrame(do11).to_html(escape=False), unsafe_allow_html=True)
     
                     
                     st.markdown("<h5 style='text-align: center; color: grey;'> Non-Representative Docs base Summary(Hierarchy and Structure) </h5>", unsafe_allow_html=True)
                     do111 = df2[(df2['Topics']==concept_option) & (df2['Summary Type']=='Hierarchy and Structure')]['Summary Variants'].reset_index(drop=True)[0]
                     st.write(do111)
-                    with st: 
-                        feedback3 = streamlit_feedback(
-                            feedback_type="thumbs",
-                            optional_text_label="[Optional] Please provide an explanation",key=3,
-                        )
-                        feedback3
-    
-                    with st:
-                        exapnder = st.expander("Document Used")
-                        do11 = df1[(df1['CustomName']==concept_option) & (df1['Representative_document']==False)]['Document'].reset_index(drop=True)
-                        exapnder.write(pd.DataFrame(do11).to_html(escape=False), unsafe_allow_html=True)
+                 
+                    feedback3 = streamlit_feedback(
+                        feedback_type="thumbs",
+                        optional_text_label="[Optional] Please provide an explanation",key=3,
+                    )
+                    feedback3
+
+               
+                    exapnder = st.expander("Document Used")
+                    do11 = df1[(df1['CustomName']==concept_option) & (df1['Representative_document']==False)]['Document'].reset_index(drop=True)
+                    exapnder.write(pd.DataFrame(do11).to_html(escape=False), unsafe_allow_html=True)
 
 
                 with tab3:
@@ -128,34 +128,34 @@ if uploaded_file is not None:
                     do1 = df[(df['Topics']==concept_option) & (df['Summary Type']=='Logical Flow of Arguments')]['Summary Variants'].reset_index(drop=True)[0]
                     st.write(do1)
     
-                    with st: 
-                        feedback4 = streamlit_feedback(
-                            feedback_type="thumbs",
-                            optional_text_label="[Optional] Please provide an explanation",key=4,
-                        )
-                        feedback4
-    
-                    with st:
-                        exapnder = st.expander("Document Used")
-                        do11 = df1[(df1['CustomName']==concept_option) & (df1['Representative_document']==True)]['Document'].reset_index(drop=True)
-                        exapnder.write(pd.DataFrame(do11).to_html(escape=False), unsafe_allow_html=True)
+                    
+                    feedback4 = streamlit_feedback(
+                        feedback_type="thumbs",
+                        optional_text_label="[Optional] Please provide an explanation",key=4,
+                    )
+                    feedback4
+
+                
+                    exapnder = st.expander("Document Used")
+                    do11 = df1[(df1['CustomName']==concept_option) & (df1['Representative_document']==True)]['Document'].reset_index(drop=True)
+                    exapnder.write(pd.DataFrame(do11).to_html(escape=False), unsafe_allow_html=True)
     
                     
                     st.markdown("<h5 style='text-align: center; color: grey;'> Non-Representative Docs base Summary(Logical Flow of Arguments) </h5>", unsafe_allow_html=True)
                     do111 = df2[(df2['Topics']==concept_option) & (df2['Summary Type']=='Logical Flow of Arguments')]['Summary Variants'].reset_index(drop=True)[0]
                     st.write(do111)
     
-                    with st: 
-                        feedback5 = streamlit_feedback(
-                            feedback_type="thumbs",
-                            optional_text_label="[Optional] Please provide an explanation",key=5,
-                        )
-                        feedback5
-    
-                    with st:
-                        exapnder = st.expander("Document Used")
-                        do11 = df1[(df1['CustomName']==concept_option) & (df1['Representative_document']==False)]['Document'].reset_index(drop=True)
-                        exapnder.write(pd.DataFrame(do11).to_html(escape=False), unsafe_allow_html=True)
+                    
+                    feedback5 = streamlit_feedback(
+                        feedback_type="thumbs",
+                        optional_text_label="[Optional] Please provide an explanation",key=5,
+                    )
+                    feedback5
+
+                
+                    exapnder = st.expander("Document Used")
+                    do11 = df1[(df1['CustomName']==concept_option) & (df1['Representative_document']==False)]['Document'].reset_index(drop=True)
+                    exapnder.write(pd.DataFrame(do11).to_html(escape=False), unsafe_allow_html=True)
 
 
                 with tab4:
@@ -163,33 +163,33 @@ if uploaded_file is not None:
                     do1 = df[(df['Topics']==concept_option) & (df['Summary Type']=='Retrospectives and Prospectives')]['Summary Variants'].reset_index(drop=True)[0]
                     st.write(do1)
     
-                    with st: 
-                        feedback6 = streamlit_feedback(
-                            feedback_type="thumbs",
-                            optional_text_label="[Optional] Please provide an explanation",key=6,
-                        )
-                        feedback6
-    
-                    with st:
-                        exapnder = st.expander("Document Used")
-                        do11 = df1[(df1['CustomName']==concept_option) & (df1['Representative_document']==True)]['Document'].reset_index(drop=True)
-                        exapnder.write(pd.DataFrame(do11).to_html(escape=False), unsafe_allow_html=True)
+                     
+                    feedback6 = streamlit_feedback(
+                        feedback_type="thumbs",
+                        optional_text_label="[Optional] Please provide an explanation",key=6,
+                    )
+                    feedback6
+
+                
+                    exapnder = st.expander("Document Used")
+                    do11 = df1[(df1['CustomName']==concept_option) & (df1['Representative_document']==True)]['Document'].reset_index(drop=True)
+                    exapnder.write(pd.DataFrame(do11).to_html(escape=False), unsafe_allow_html=True)
     
                     
                     st.markdown("<h5 style='text-align: center; color: grey;'> Non-Representative Docs base Summary(Retrospectives and Prospectivese) </h5>", unsafe_allow_html=True)
                     do111 = df2[(df2['Topics']==concept_option) & (df2['Summary Type']=='Retrospectives and Prospectives')]['Summary Variants'].reset_index(drop=True)[0]
                     st.write(do111)
                     
-                    with st: 
-                        feedback7 = streamlit_feedback(
-                            feedback_type="thumbs",
-                            optional_text_label="[Optional] Please provide an explanation",key=7,
-                        )
-                        feedback7
-                    with st:
-                        exapnder = st.expander("Document Used")
-                        do11 = df1[(df1['CustomName']==concept_option) & (df1['Representative_document']==False)]['Document'].reset_index(drop=True)
-                        exapnder.write(pd.DataFrame(do11).to_html(escape=False), unsafe_allow_html=True)
+                   
+                    feedback7 = streamlit_feedback(
+                        feedback_type="thumbs",
+                        optional_text_label="[Optional] Please provide an explanation",key=7,
+                    )
+                    feedback7
+                
+                    exapnder = st.expander("Document Used")
+                    do11 = df1[(df1['CustomName']==concept_option) & (df1['Representative_document']==False)]['Document'].reset_index(drop=True)
+                    exapnder.write(pd.DataFrame(do11).to_html(escape=False), unsafe_allow_html=True)
                 with tab5:
                     st.markdown("<h5 style='text-align: center; color: grey;'> Representative Docs base Summary (Correlations and Associations) </h5>", unsafe_allow_html=True)
                     do1 = df[(df['Topics']==concept_option) & (df['Summary Type']=='Correlations and Associations')]['Summary Variants'].reset_index(drop=True)[0]
