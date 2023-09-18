@@ -68,8 +68,8 @@ if uploaded_file is not None:
                     model="Summary",
                 )
             
-                if user_feedback:
-                    col1.write(user_feedback)
+                #if user_feedback:
+                col1.write(user_feedback)
 
                 with col1:
                     exapnder = st.expander("Document Used")
