@@ -293,7 +293,7 @@ if uploaded_file is not None:
 
 
     page_names_to_funcs = {
-        #"Concept Analysis": concept_view_1,
+        "Concept Analysis": concept_view_1,
         "Summary Analysis": main_page,
     }
 
