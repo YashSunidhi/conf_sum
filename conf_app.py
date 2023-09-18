@@ -61,22 +61,13 @@ if uploaded_file is not None:
                 col1.markdown("<h5 style='text-align: center; color: grey;'> Representative Docs base Summary (Problem-Solution Structure) </h5>", unsafe_allow_html=True)
                 do1 = df[(df['Topics']==concept_option) & (df['Summary Type']=='Problem-Solution Structure')]['Summary Variants'].reset_index(drop=True)[0]
                 col1.write(do1)
+                feedback = collector.st_feedback(
+                	feedback_type="thumbs",
+                	path="thumbs_feedback.json"
+                )
+                # print out the feedback object as a dictionary in your app
+                feedback.dict() if feedback else None
 
-                messages = str(do1)
-    
-
-                for n, msg in enumerate(messages):
-                    feedback = collector.st_feedback(
-                        component="default",
-                        feedback_type="thumbs",
-                        open_feedback_label="[Optional] Provide additional feedback",
-                        model='llama-13b',
-                        #key=feedback_key,
-                    )
-                    if feedback:
-                        with st.sidebar:
-                            st.write(":orange[Here's the raw feedback you sent to [Trubrics](https://trubrics.streamlit.app/):]")
-                            st.write(feedback)
 
                 with col1:
                     exapnder = st.expander("Document Used")
