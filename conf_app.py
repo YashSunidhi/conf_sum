@@ -49,6 +49,7 @@ if uploaded_file is not None:
                 concept_option = st.sidebar.selectbox(
                 'Concept Selection',
                 (df['Topics'].unique()))
+                
                 collector = FeedbackCollector(
                     email='smnitrkl50@gmail.com',
                     password='Ram@2107',
@@ -66,10 +67,12 @@ if uploaded_file is not None:
                     feedback_type="thumbs",
                     open_feedback_label="[Optional] Provide additional feedback",
                     model="Summary",
+                    #model="gpt-3.5-turbo",
+                    prompt_id=None,
                 )
             
-                #if user_feedback:
-                col1.write(user_feedback)
+                if user_feedback:
+                    col1.write(user_feedback)
 
                 with col1:
                     exapnder = st.expander("Document Used")
