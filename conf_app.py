@@ -56,7 +56,7 @@ if uploaded_file is not None:
                     password='Ram@2107',
                     project="default"
                 )
-                st.markdown("<h2 style='text-align: center; color: grey;'> Concept: {concept_option} </h2>", unsafe_allow_html=True)
+                st.write(f"Identified Concept: **{concept_option}**")
                 tab1, tab2, tab3, tab4, tab5 = st.tabs(["Problem-Solution Structure","Hierarchy and Structure", "Logical Flow of Arguments","Retrospectives and Prospectives","Correlations and Associations"])
                 with tab1:
                     st.markdown("<h5 style='text-align: center; color: grey;'> Representative Docs base Summary (Problem-Solution Structure) </h5>", unsafe_allow_html=True)
