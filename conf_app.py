@@ -581,7 +581,7 @@ if uploaded_file is not None:
 
                 dx = pd.read_csv('./test_conf_summ_1/conf_data_v_2.csv')
                 dx = dx.groupby(['CustomName']).agg({'Document':'count', 'Representation':'unique'}).reset_index()
-                fign = px.treemap(dx, path=[px.Constant('ECTRIMS'), 'CustomName'], values='Document', hover_data=['Representation'])
+                fign = px.treemap(dx, path=[px.Constant('ECTRIMS'), 'CustomName'], values='Document')
                 
 
                 # Pre-calculate embeddings
