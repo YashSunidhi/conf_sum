@@ -581,7 +581,7 @@ if uploaded_file is not None:
 
                 dx = pd.read_csv('./test_conf_summ_1/conf_data_v2.csv')
                 dx = dx.groupby(['CustomName']).agg({'Document':'count', 'MMR':'unique'}).reset_index()
-                fign = px.treemap(dx, path=[px.Constant('ECTRIMS'), 'CustomName', 'Representative_document'], values='count',
+                fign = px.treemap(dx, path=[px.Constant('ECTRIMS'), 'CustomName'], values='count',
                                   color='lifeExp', hover_data=['MMR'])
                 
 
@@ -612,7 +612,7 @@ if uploaded_file is not None:
                 #st.plotly_chart(fig2, theme=None, use_container_width=True)
 
                 tab0, tab1, tab2, tab3 = st.tabs(["Concept-Tweet Distribution","Concept View in Spacial Distribution", "Concept View in Hierarchical Distribution","Progressive View in Hierarchical Distribution"])
-                with tab1:
+                with tab0:
                     # Use the Streamlit theme.
                     # This is the default. So you can also omit the theme argument.
                     st.plotly_chart(fign, theme="streamlit", use_container_width=True)
