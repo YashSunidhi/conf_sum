@@ -578,6 +578,13 @@ if uploaded_file is not None:
                 abstracts = df['clean_tw'].to_list()
                 titles = df["Title"].to_list()
 
+
+                dx = pd.read_csv('./test_conf_summ_1/conf_data_v2.csv')
+                dx = dx.groupby(['CustomName']).agg({'Document':'count', 'MMR':'unique'}).reset_index()
+                fign = px.treemap(dx, path=[px.Constant('ECTRIMS'), 'CustomName', 'Representative_document'], values='count',
+                                  color='lifeExp', hover_data=['MMR'])
+                
+
                 # Pre-calculate embeddings
                 embedding_model = SentenceTransformer("BAAI/bge-base-en")
                 embeddings = embedding_model.encode(abstracts, show_progress_bar=True)
@@ -604,7 +611,12 @@ if uploaded_file is not None:
                 fig2 = loaded_model.visualize_hierarchical_documents(abstracts, hierarchical_topics, reduced_embeddings=reduced_embeddings,custom_labels=True)
                 #st.plotly_chart(fig2, theme=None, use_container_width=True)
 
-                tab1, tab2, tab3 = st.tabs(["Concept View in Spacial Distribution", "Concept View in Hierarchical Distribution","Progressive View in Hierarchical Distribution"])
+                tab0, tab1, tab2, tab3 = st.tabs(["Concept-Tweet Distribution","Concept View in Spacial Distribution", "Concept View in Hierarchical Distribution","Progressive View in Hierarchical Distribution"])
+                with tab1:
+                    # Use the Streamlit theme.
+                    # This is the default. So you can also omit the theme argument.
+                    st.plotly_chart(fign, theme="streamlit", use_container_width=True)
+                
                 with tab1:
                     # Use the Streamlit theme.
                     # This is the default. So you can also omit the theme argument.
