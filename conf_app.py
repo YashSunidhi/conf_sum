@@ -77,7 +77,7 @@ if uploaded_file is not None:
                     # 1. authenticate with trubrics
                     collector = FeedbackCollector(email='smnitrkl50@gmail.com', password='Ram@2107', project="default")
                     
-                    if st.button("Refresh",key = '00'):
+                    if st.button("Refresh",key = '0022'):
                         st.session_state.feedback_key += 1
                         st.session_state.logged_prompt = None
                         st.experimental_rerun()
@@ -87,7 +87,7 @@ if uploaded_file is not None:
                     #st.write(f"#### :orange[Example user prompt: {prompt}]")
                     
                     
-                    if st.button("To share FEEDBACK, Click here!!", key = '000'):
+                    if st.button("To share FEEDBACK, Click here!!", key = '000222'):
                         # 2. log a user prompt & model response
                         st.session_state.logged_prompt = collector.log_prompt(
                             config_model={"model": "llama-13b"},
