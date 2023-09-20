@@ -577,11 +577,14 @@ if uploaded_file is not None:
                 df = pd.read_csv('./test_conf_summ_1/conf_input_data.csv')
                 abstracts = df['clean_tw'].to_list()
                 titles = df["Title"].to_list()
+                df['Document'] = df['clean_tw']
 
 
                 dx = pd.read_csv('./test_conf_summ_1/conf_data_v_2.csv')
-                dx = dx[dx['Topic']>=0].groupby(['CustomName']).agg({'Document':'count', 'Representation':'unique'}).reset_index()
-                fign = px.treemap(dx, path=[px.Constant('ECTRIMS'), 'CustomName'], values='Document')
+
+                dm = df.merge(dx,on='Document',how='inner).fillna('NAP')
+                dm = dm[dm['Topic']>=0].groupby(['CustomName','Country Code','Gender','Representation','Professions']).agg({'Document':'count'}).reset_index()
+                fign = px.treemap(dm, path=[px.Constant('ECTRIMS'), 'CustomName','Country Code','Gender'], values='Document',hover_data=['Representation'])
                 
 
                 # Pre-calculate embeddings
