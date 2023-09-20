@@ -580,7 +580,7 @@ if uploaded_file is not None:
 
 
                 dx = pd.read_csv('./test_conf_summ/conf_data_v2.csv')
-                dx = dx.groupby(['CustomName']).agg({'Document':'count', 'MMR':'unique'}).reset_index()
+                dx = dx.groupby(['CustomName']).agg({'Document':'count', 'Representation':'unique'}).reset_index()
                 fign = px.treemap(dx, path=[px.Constant('ECTRIMS'), 'CustomName'], values='count',
                                   color='lifeExp', hover_data=['MMR'])
                 
