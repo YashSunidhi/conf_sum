@@ -583,8 +583,8 @@ if uploaded_file is not None:
                 dx = pd.read_csv('./test_conf_summ_1/conf_data_v_2.csv')
 
                 dm = df.merge(dx,on='Document',how='inner').fillna('NAP')
-                dm = dm[dm['Topic']>=0].groupby(['CustomName','Country Code','Gender','Representation','Professions']).agg({'Document':'count'}).reset_index()
-                fign = px.treemap(dm, path=[px.Constant('ECTRIMS'), 'CustomName','Country Code','Gender'], values='Document',hover_data=['Representation'])
+                dm = dm[dm['Topic']>=0].groupby(['CustomName','Country Code','Professions']).agg({'Document':'count','Country Code':'count','Gender':'count','Professions':'count'}).reset_index()
+                fign = px.treemap(dm, path=[px.Constant('ECTRIMS'), 'CustomName','Country Code','Gender'], values='Document',color='Professions',hover_data=['Representation'])
                 
 
                 # Pre-calculate embeddings
