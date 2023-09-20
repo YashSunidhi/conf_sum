@@ -591,7 +591,7 @@ if uploaded_file is not None:
                 # Pre-reduce embeddings for visualization purposes
                 reduced_embeddings = UMAP(n_neighbors=10, n_components=5, min_dist=0.0, metric='cosine', random_state=42).fit_transform(embeddings)
 
-                loaded_model = BERTopic.load("./test_conf_summ")
+                loaded_model = BERTopic.load("./test_conf_summ_1")
                 #loaded_model.visualize_documents(titles, reduced_embeddings=reduced_embeddings, hide_annotations=True, hide_document_hover=False, custom_labels=True)
                 st.markdown("<h4 style='text-align: center; color: black;'> Concept Analysis in Using Visulaization </h4>", unsafe_allow_html=True)
                 fig = loaded_model.visualize_documents(titles, reduced_embeddings=reduced_embeddings, hide_annotations=True, hide_document_hover=False, custom_labels=True)
