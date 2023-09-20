@@ -574,7 +574,7 @@ if uploaded_file is not None:
 
             def concept_view_1():
                
-                df = pd.read_csv('./test_conf_summ/final_doc_input.csv')
+                df = pd.read_csv('./test_conf_summ_1/final_doc_input.csv')
                 abstracts = df['Full Text'].to_list()
                 titles = df["Title"].to_list()
 
