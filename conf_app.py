@@ -122,7 +122,7 @@ if uploaded_file is not None:
                     if "logged_prompt" not in st.session_state:
                         st.session_state.logged_prompt = None
                     if "feedback_key" not in st.session_state:
-                        st.session_state.feedback_key = 1
+                        st.session_state.feedback_key = 0
                     
                     # 1. authenticate with trubrics
                     collector = FeedbackCollector(email='smnitrkl50@gmail.com', password='Ram@2107', project="default")
@@ -165,7 +165,7 @@ if uploaded_file is not None:
                     if "logged_prompt" not in st.session_state:
                         st.session_state.logged_prompt = None
                     if "feedback_key" not in st.session_state:
-                        st.session_state.feedback_key = 2
+                        st.session_state.feedback_key = 0
                     
                     # 1. authenticate with trubrics
                     collector = FeedbackCollector(email='smnitrkl50@gmail.com', password='Ram@2107', project="default")
@@ -214,7 +214,7 @@ if uploaded_file is not None:
                     if "logged_prompt" not in st.session_state:
                         st.session_state.logged_prompt = None
                     if "feedback_key" not in st.session_state:
-                        st.session_state.feedback_key = 3
+                        st.session_state.feedback_key = 0
                     
                     # 1. authenticate with trubrics
                     collector = FeedbackCollector(email='smnitrkl50@gmail.com', password='Ram@2107', project="default")
@@ -265,7 +265,7 @@ if uploaded_file is not None:
                     if "logged_prompt" not in st.session_state:
                         st.session_state.logged_prompt = None
                     if "feedback_key" not in st.session_state:
-                        st.session_state.feedback_key = 4
+                        st.session_state.feedback_key = 0
                     
                     # 1. authenticate with trubrics
                     collector = FeedbackCollector(email='smnitrkl50@gmail.com', password='Ram@2107', project="default")
@@ -315,7 +315,7 @@ if uploaded_file is not None:
                     if "logged_prompt" not in st.session_state:
                         st.session_state.logged_prompt = None
                     if "feedback_key" not in st.session_state:
-                        st.session_state.feedback_key = 5
+                        st.session_state.feedback_key = 0
                     
                     # 1. authenticate with trubrics
                     collector = FeedbackCollector(email='smnitrkl50@gmail.com', password='Ram@2107', project="default")
@@ -366,7 +366,7 @@ if uploaded_file is not None:
                     if "logged_prompt" not in st.session_state:
                         st.session_state.logged_prompt = None
                     if "feedback_key" not in st.session_state:
-                        st.session_state.feedback_key = 6
+                        st.session_state.feedback_key = 0
                     
                     # 1. authenticate with trubrics
                     collector = FeedbackCollector(email='smnitrkl50@gmail.com', password='Ram@2107', project="default")
@@ -416,7 +416,7 @@ if uploaded_file is not None:
                     if "logged_prompt" not in st.session_state:
                         st.session_state.logged_prompt = None
                     if "feedback_key" not in st.session_state:
-                        st.session_state.feedback_key = 7
+                        st.session_state.feedback_key = 0
                     
                     # 1. authenticate with trubrics
                     collector = FeedbackCollector(email='smnitrkl50@gmail.com', password='Ram@2107', project="default")
@@ -464,7 +464,7 @@ if uploaded_file is not None:
                     if "logged_prompt" not in st.session_state:
                         st.session_state.logged_prompt = None
                     if "feedback_key" not in st.session_state:
-                        st.session_state.feedback_key = 8
+                        st.session_state.feedback_key = 0
                     
                     # 1. authenticate with trubrics
                     collector = FeedbackCollector(email='smnitrkl50@gmail.com', password='Ram@2107', project="default")
@@ -514,7 +514,7 @@ if uploaded_file is not None:
                     if "logged_prompt" not in st.session_state:
                         st.session_state.logged_prompt = None
                     if "feedback_key" not in st.session_state:
-                        st.session_state.feedback_key = 9
+                        st.session_state.feedback_key = 0
                     
                     # 1. authenticate with trubrics
                     collector = FeedbackCollector(email='smnitrkl50@gmail.com', password='Ram@2107', project="default")
