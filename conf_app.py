@@ -613,8 +613,13 @@ if uploaded_file is not None:
                 #st.markdown("<h4 style='text-align: center; color: black;'> Progressive View in Hierarchical Distribution </h4>", unsafe_allow_html=True)
                 fig2 = loaded_model.visualize_hierarchical_documents(abstracts, hierarchical_topics, reduced_embeddings=reduced_embeddings,custom_labels=True)
                 #st.plotly_chart(fig2, theme=None, use_container_width=True)
-
-                tab0, tab1, tab2, tab3 = st.tabs(["Concept-Tweet Distribution","Concept View in Spacial Distribution", "Concept View in Hierarchical Distribution","Progressive View in Hierarchical Distribution"])
+                #dc = pd.read_csv('')
+                tab5, tab0, tab1, tab2, tab3 = st.tabs(["Overall Key Highlights","Concept-Tweet Distribution","Concept View in Spacial Distribution", "Concept View in Hierarchical Distribution","Progressive View in Hierarchical Distribution"])
+                # with tab5:
+                #     # Use the Streamlit theme.
+                #     # This is the default. So you can also omit the theme argument.
+                #     st.plotly_chart(fign, theme="streamlit", use_container_width=True)
+                
                 with tab0:
                     # Use the Streamlit theme.
                     # This is the default. So you can also omit the theme argument.
