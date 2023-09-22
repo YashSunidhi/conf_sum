@@ -615,7 +615,7 @@ if uploaded_file is not None:
                 fig2 = loaded_model.visualize_hierarchical_documents(abstracts, hierarchical_topics, reduced_embeddings=reduced_embeddings,custom_labels=True)
                 #st.plotly_chart(fig2, theme=None, use_container_width=True)
          
-                df['Date']= pd.to_datetime(df['Date']).dt.date
+                #df['Date']= pd.to_datetime(df['Date']).dt.date
                 timestamps = df['Date'].to_list()
                 topics_over_time = loaded_model.topics_over_time(docs=abstracts, 
                                                 timestamps=timestamps, 
