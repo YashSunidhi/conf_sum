@@ -619,9 +619,9 @@ if uploaded_file is not None:
                                                 timestamps=timestamps, 
                                                 global_tuning=True, 
                                                 evolution_tuning=True, 
-                                                nr_bins=20,custom_labels=True)
+                                                nr_bins=20)
                 #timestamps = list(pd.to_datetime(dx['Date']).dt.date)
-                figt = loaded_model.visualize_topics_over_time(topics_over_time, top_n_topics=20)
+                figt = loaded_model.visualize_topics_over_time(topics_over_time, top_n_topics=31,custom_labels=True)
                 #dc = pd.read_csv('')
                 tab5, tab0, tab1, tab2, tab3 = st.tabs(["Temporal-View","Concept-Tweet Distribution","Concept View in Spacial Distribution", "Concept View in Hierarchical Distribution","Progressive View in Hierarchical Distribution"])
                 with tab5:
