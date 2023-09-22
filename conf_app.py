@@ -613,12 +613,14 @@ if uploaded_file is not None:
                 #st.markdown("<h4 style='text-align: center; color: black;'> Progressive View in Hierarchical Distribution </h4>", unsafe_allow_html=True)
                 fig2 = loaded_model.visualize_hierarchical_documents(abstracts, hierarchical_topics, reduced_embeddings=reduced_embeddings,custom_labels=True)
                 #st.plotly_chart(fig2, theme=None, use_container_width=True)
-                topics_over_time = loaded_model.topics_over_time(docs=tweets, 
+                timestamps = list(pd.to_datetime(dx['Date']).dt.date)
+                
+                topics_over_time = loaded_model.topics_over_time(docs=abstracts, 
                                                 timestamps=timestamps, 
                                                 global_tuning=True, 
                                                 evolution_tuning=True, 
                                                 nr_bins=20,custom_labels=True)
-                timestamps = list(pd.to_datetime(dx['Date']).dt.date)
+                #timestamps = list(pd.to_datetime(dx['Date']).dt.date)
                 figt = loaded_model.visualize_topics_over_time(topics_over_time, top_n_topics=20)
                 #dc = pd.read_csv('')
                 tab5, tab0, tab1, tab2, tab3 = st.tabs(["Temporal-View","Concept-Tweet Distribution","Concept View in Spacial Distribution", "Concept View in Hierarchical Distribution","Progressive View in Hierarchical Distribution"])
