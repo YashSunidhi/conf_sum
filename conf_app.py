@@ -624,8 +624,16 @@ if uploaded_file is not None:
                                                 nr_bins=20)
                 #timestamps = list(pd.to_datetime(dx['Date']).dt.date)
                 figt = loaded_model.visualize_topics_over_time(topics_over_time, top_n_topics=31,custom_labels=True)
-                #dc = pd.read_csv('')
-                tab5, tab0, tab1, tab2, tab3 = st.tabs(["Temporal-View","Concept-Tweet Distribution","Concept View in Spacial Distribution", "Concept View in Hierarchical Distribution","Progressive View in Hierarchical Distribution"])
+                dc = pd.read_csv('top_summary - Sheet1.csv')
+                tab6, tab5, tab0, tab1, tab2, tab3 = st.tabs(["Overall Summary","Temporal-View","Concept-Tweet Distribution","Concept View in Spacial Distribution", "Concept View in Hierarchical Distribution","Progressive View in Hierarchical Distribution"])
+                with tab6:
+                    # Use the Streamlit theme.
+                    # This is the default. So you can also omit the theme argument.
+                    col1, col2 = st.columns([1,1])
+                    col1.write(dc['summary'][0])
+                    col2.write(dc['tag'][0]
+                    
+                
                 with tab5:
                     # Use the Streamlit theme.
                     # This is the default. So you can also omit the theme argument.
