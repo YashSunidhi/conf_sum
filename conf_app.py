@@ -648,6 +648,17 @@ if uploaded_file is not None:
                 # Use the Streamlit theme.
                 # This is the default. So you can also omit the theme argument.
                 #col1, col2 = st.columns([1,1])
+                st.markdown("<h4 style='text-align: center; color: black;'> Some Interesting Facts about Ectrims 2023 </h4>", unsafe_allow_html=True)
+                cola, colb, colc, cold, cole, colf, colg = st.columns(7)
+                cola.metric(label="Number of Unique Post", value=df.shape[0])
+                colb.metric(label="Number of Authors", value=df['Author'].nunique())
+                colc.metric(label="Number of Interest Listed", value=df['Interest'].nunique())
+                cold.metric(label="Number of Unique Profession ", value=df['Professions'].nunique())
+                cole.metric(label="Max Retweeted", value=df['Twitter Retweets'].max())
+                colf.metric(label="Number of Countries", value=df['Country Code'].nunique())
+                colg.metric(label="Number of Categories", value=df['Category Details'].nunique())
+                #colc.metric(label="Number of Font Size Used", value=tt.size*1000.nunique())
+                st.markdown("<h4 style='text-align: center; color: black;'> Top Story from Ectrims 2023  </h4>", unsafe_allow_html=True)
                 st.write(dc['Summary'][0])
                 #col2.write(dc['tag'][0])
                 
