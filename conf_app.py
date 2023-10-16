@@ -50,7 +50,7 @@ if uploaded_file is not None:
             # df2 = pd.read_csv(uploaded_file2)
             concept_option = st.sidebar.selectbox(
             'Concept Selection',
-            (df['Topics'].unique()))
+            (df['Concept'].unique()))
             
             collector = FeedbackCollector(
                 email='smnitrkl50@gmail.com',
