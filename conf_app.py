@@ -58,520 +58,528 @@ if uploaded_file is not None:
                 project="default"
             )
             st.write(f"Identified Concept: **{concept_option}**")
-            tab1, tab2, tab3, tab4, tab5 = st.tabs(["Problem-Solution Structure","Hierarchy and Structure", "Logical Flow of Arguments","Retrospectives and Prospectives","Correlations and Associations"])
-            with tab1:
-                st.markdown("<h5 style='text-align: center; color: grey;'> Representative Docs base Summary (Problem-Solution Structure) </h5>", unsafe_allow_html=True)
-                do1 = df[(df['Topics']==concept_option) & (df['Summary Type']=='Problem-Solution Structure')]['Summary Variants'].reset_index(drop=True)[0]
-                st.write(do1)
+            st.markdown("<h5 style='text-align: center; color: grey;'> Representative Docs base Summary (Problem-Solution Structure) </h5>", unsafe_allow_html=True)
+            do1 = df[(df['Concept']==concept_option)]['Summary'].reset_index(drop=True)[0]
+            do2 = df[(df['Concept']==concept_option)]['Title'].reset_index(drop=True)[0]
+            st.markdown("<h6 style='text-align: center; color: grey;'> Concept Title </h6>", unsafe_allow_html=True)
+            st.write(do2)
+            st.markdown("<h6 style='text-align: center; color: grey;'> Concept Summary </h6>", unsafe_allow_html=True)
+            st.write(do1)
+            # st.write(do1)
+            # tab1, tab2, tab3, tab4, tab5 = st.tabs(["Problem-Solution Structure","Hierarchy and Structure", "Logical Flow of Arguments","Retrospectives and Prospectives","Correlations and Associations"])
+            # with tab1:
+            #     st.markdown("<h5 style='text-align: center; color: grey;'> Representative Docs base Summary (Problem-Solution Structure) </h5>", unsafe_allow_html=True)
+            #     do1 = df[(df['Topics']==concept_option) & (df['Summary Type']=='Problem-Solution Structure')]['Summary Variants'].reset_index(drop=True)[0]
+            #     st.write(do1)
 
 
             
-                exapnder = st.expander("Document Used")
-                do11 = df1[(df1['CustomName']==concept_option) & (df1['Representative_document']==True)]['Document'].reset_index(drop=True)
-                exapnder.write(pd.DataFrame(do11).to_html(escape=False), unsafe_allow_html=True)
+            #     exapnder = st.expander("Document Used")
+            #     do11 = df1[(df1['CustomName']==concept_option) & (df1['Representative_document']==True)]['Document'].reset_index(drop=True)
+            #     exapnder.write(pd.DataFrame(do11).to_html(escape=False), unsafe_allow_html=True)
 
-                if "logged_prompt" not in st.session_state:
-                    st.session_state.logged_prompt = None
-                if "feedback_key" not in st.session_state:
-                    st.session_state.feedback_key = 10
+            #     if "logged_prompt" not in st.session_state:
+            #         st.session_state.logged_prompt = None
+            #     if "feedback_key" not in st.session_state:
+            #         st.session_state.feedback_key = 10
                 
-                # 1. authenticate with trubrics
-                collector = FeedbackCollector(email='smnitrkl50@gmail.com', password='Ram@2107', project="default")
+            #     # 1. authenticate with trubrics
+            #     collector = FeedbackCollector(email='smnitrkl50@gmail.com', password='Ram@2107', project="default")
                 
-                if st.button("Refresh",key = '0022'):
-                    st.session_state.feedback_key += 1
-                    st.session_state.logged_prompt = None
-                    st.experimental_rerun()
+            #     if st.button("Refresh",key = '0022'):
+            #         st.session_state.feedback_key += 1
+            #         st.session_state.logged_prompt = None
+            #         st.experimental_rerun()
                 
-                prompt = "Tell me a joke"
-                generation = "Why did the chicken cross the road? To get to the other side."
-                #st.write(f"#### :orange[Example user prompt: {prompt}]")
+            #     prompt = "Tell me a joke"
+            #     generation = "Why did the chicken cross the road? To get to the other side."
+            #     #st.write(f"#### :orange[Example user prompt: {prompt}]")
                 
                 
-                if st.button("To share FEEDBACK, Click here!!", key = '000222'):
-                    # 2. log a user prompt & model response
-                    st.session_state.logged_prompt = collector.log_prompt(
-                        config_model={"model": "llama-13b"},
-                        prompt=prompt,
-                        generation=generation,
-                    )
+            #     if st.button("To share FEEDBACK, Click here!!", key = '000222'):
+            #         # 2. log a user prompt & model response
+            #         st.session_state.logged_prompt = collector.log_prompt(
+            #             config_model={"model": "llama-13b"},
+            #             prompt=prompt,
+            #             generation=generation,
+            #         )
                 
-                if st.session_state.logged_prompt:
-                    #st.write(f"#### :blue[Example model generation: {generation}]")
-                    # 3. log some user feedback
-                    user_feedback = collector.st_feedback(
-                        component="default",
-                        feedback_type="thumbs",
-                        open_feedback_label="[Optional] Provide additional feedback",
-                        model=st.session_state.logged_prompt.config_model.model,
-                        prompt_id=st.session_state.logged_prompt.id,
-                        key=st.session_state.feedback_key,
-                        align="flex-start",
-                    )
+            #     if st.session_state.logged_prompt:
+            #         #st.write(f"#### :blue[Example model generation: {generation}]")
+            #         # 3. log some user feedback
+            #         user_feedback = collector.st_feedback(
+            #             component="default",
+            #             feedback_type="thumbs",
+            #             open_feedback_label="[Optional] Provide additional feedback",
+            #             model=st.session_state.logged_prompt.config_model.model,
+            #             prompt_id=st.session_state.logged_prompt.id,
+            #             key=st.session_state.feedback_key,
+            #             align="flex-start",
+            #         )
 
                 
-                st.markdown("<h5 style='text-align: center; color: grey;'> Non-Representative Docs base Summary(Problem-Solution Structure) </h5>", unsafe_allow_html=True)
-                do111 = df2[(df2['Topics']==concept_option) & (df2['Summary Type']=='Problem-Solution Structure')]['Summary Variants'].reset_index(drop=True)[0]
-                st.write(do111)
+            #     st.markdown("<h5 style='text-align: center; color: grey;'> Non-Representative Docs base Summary(Problem-Solution Structure) </h5>", unsafe_allow_html=True)
+            #     do111 = df2[(df2['Topics']==concept_option) & (df2['Summary Type']=='Problem-Solution Structure')]['Summary Variants'].reset_index(drop=True)[0]
+            #     st.write(do111)
              
 
            
-                exapnder = st.expander("Document Used")
-                do11 = df1[(df1['CustomName']==concept_option) & (df1['Representative_document']==False)]['Document'].reset_index(drop=True)
-                exapnder.write(pd.DataFrame(do11).to_html(escape=False), unsafe_allow_html=True)
+            #     exapnder = st.expander("Document Used")
+            #     do11 = df1[(df1['CustomName']==concept_option) & (df1['Representative_document']==False)]['Document'].reset_index(drop=True)
+            #     exapnder.write(pd.DataFrame(do11).to_html(escape=False), unsafe_allow_html=True)
 
-                # if "logged_prompt" not in st.session_state:
-                #     st.session_state.logged_prompt = None
-                # if "feedback_key" not in st.session_state:
-                #     st.session_state.feedback_key = 20
+            #     # if "logged_prompt" not in st.session_state:
+            #     #     st.session_state.logged_prompt = None
+            #     # if "feedback_key" not in st.session_state:
+            #     #     st.session_state.feedback_key = 20
                 
-                # # 1. authenticate with trubrics
-                # collector = FeedbackCollector(email='smnitrkl50@gmail.com', password='Ram@2107', project="default")
+            #     # # 1. authenticate with trubrics
+            #     # collector = FeedbackCollector(email='smnitrkl50@gmail.com', password='Ram@2107', project="default")
                 
-                # if st.button("Refresh",key = '10'):
-                #     st.session_state.feedback_key += 1
-                #     st.session_state.logged_prompt = None
-                #     st.experimental_rerun()
+            #     # if st.button("Refresh",key = '10'):
+            #     #     st.session_state.feedback_key += 1
+            #     #     st.session_state.logged_prompt = None
+            #     #     st.experimental_rerun()
                 
-                # prompt = "Tell me a joke"
-                # generation = "Why did the chicken cross the road? To get to the other side."
-                # #st.write(f"#### :orange[Example user prompt: {prompt}]")
+            #     # prompt = "Tell me a joke"
+            #     # generation = "Why did the chicken cross the road? To get to the other side."
+            #     # #st.write(f"#### :orange[Example user prompt: {prompt}]")
                 
                 
-                # if st.button("To share FEEDBACK, Click here!!", key = '100'):
-                #     # 2. log a user prompt & model response
-                #     st.session_state.logged_prompt = collector.log_prompt(
-                #         config_model={"model": "llama-13b"},
-                #         prompt=prompt,
-                #         generation=generation,
-                #     )
+            #     # if st.button("To share FEEDBACK, Click here!!", key = '100'):
+            #     #     # 2. log a user prompt & model response
+            #     #     st.session_state.logged_prompt = collector.log_prompt(
+            #     #         config_model={"model": "llama-13b"},
+            #     #         prompt=prompt,
+            #     #         generation=generation,
+            #     #     )
                 
-                # if st.session_state.logged_prompt:
-                #     #st.write(f"#### :blue[Example model generation: {generation}]")
-                #     # 3. log some user feedback
-                #     user_feedback = collector.st_feedback(
-                #         component="default",
-                #         feedback_type="thumbs",
-                #         open_feedback_label="[Optional] Provide additional feedback",
-                #         model=st.session_state.logged_prompt.config_model.model,
-                #         prompt_id=st.session_state.logged_prompt.id,
-                #         key=st.session_state.feedback_key,
-                #         align="flex-start",
-                #     )
-            with tab2:
-                st.markdown("<h5 style='text-align: center; color: grey;'> Representative Docs base Summary (Hierarchy and Structure) </h5>", unsafe_allow_html=True)
-                do1 = df[(df['Topics']==concept_option) & (df['Summary Type']=='Hierarchy and Structure')]['Summary Variants'].reset_index(drop=True)[0]
-                st.write(do1)
+            #     # if st.session_state.logged_prompt:
+            #     #     #st.write(f"#### :blue[Example model generation: {generation}]")
+            #     #     # 3. log some user feedback
+            #     #     user_feedback = collector.st_feedback(
+            #     #         component="default",
+            #     #         feedback_type="thumbs",
+            #     #         open_feedback_label="[Optional] Provide additional feedback",
+            #     #         model=st.session_state.logged_prompt.config_model.model,
+            #     #         prompt_id=st.session_state.logged_prompt.id,
+            #     #         key=st.session_state.feedback_key,
+            #     #         align="flex-start",
+            #     #     )
+            # with tab2:
+            #     st.markdown("<h5 style='text-align: center; color: grey;'> Representative Docs base Summary (Hierarchy and Structure) </h5>", unsafe_allow_html=True)
+            #     do1 = df[(df['Topics']==concept_option) & (df['Summary Type']=='Hierarchy and Structure')]['Summary Variants'].reset_index(drop=True)[0]
+            #     st.write(do1)
              
-                # if "logged_prompt" not in st.session_state:
-                #     st.session_state.logged_prompt = None
-                # if "feedback_key" not in st.session_state:
-                #     st.session_state.feedback_key = 30
+            #     # if "logged_prompt" not in st.session_state:
+            #     #     st.session_state.logged_prompt = None
+            #     # if "feedback_key" not in st.session_state:
+            #     #     st.session_state.feedback_key = 30
                 
-                # # 1. authenticate with trubrics
-                # collector = FeedbackCollector(email='smnitrkl50@gmail.com', password='Ram@2107', project="default")
+            #     # # 1. authenticate with trubrics
+            #     # collector = FeedbackCollector(email='smnitrkl50@gmail.com', password='Ram@2107', project="default")
                 
-                # if st.button("Refresh",key = '20'):
-                #     st.session_state.feedback_key += 1
-                #     st.session_state.logged_prompt = None
-                #     st.experimental_rerun()
+            #     # if st.button("Refresh",key = '20'):
+            #     #     st.session_state.feedback_key += 1
+            #     #     st.session_state.logged_prompt = None
+            #     #     st.experimental_rerun()
                 
-                # prompt = "Tell me a joke"
-                # generation = "Why did the chicken cross the road? To get to the other side."
-                # #st.write(f"#### :orange[Example user prompt: {prompt}]")
+            #     # prompt = "Tell me a joke"
+            #     # generation = "Why did the chicken cross the road? To get to the other side."
+            #     # #st.write(f"#### :orange[Example user prompt: {prompt}]")
                 
                 
-                # if st.button("To share FEEDBACK, Click here!!", key = '200'):
-                #     # 2. log a user prompt & model response
-                #     st.session_state.logged_prompt = collector.log_prompt(
-                #         config_model={"model": "llama-13b"},
-                #         prompt=prompt,
-                #         generation=generation,
-                #     )
+            #     # if st.button("To share FEEDBACK, Click here!!", key = '200'):
+            #     #     # 2. log a user prompt & model response
+            #     #     st.session_state.logged_prompt = collector.log_prompt(
+            #     #         config_model={"model": "llama-13b"},
+            #     #         prompt=prompt,
+            #     #         generation=generation,
+            #     #     )
                 
-                # if st.session_state.logged_prompt:
-                #     #st.write(f"#### :blue[Example model generation: {generation}]")
-                #     # 3. log some user feedback
-                #     user_feedback = collector.st_feedback(
-                #         component="default",
-                #         feedback_type="thumbs",
-                #         open_feedback_label="[Optional] Provide additional feedback",
-                #         model=st.session_state.logged_prompt.config_model.model,
-                #         prompt_id=st.session_state.logged_prompt.id,
-                #         key=st.session_state.feedback_key,
-                #         align="flex-start",
-                #     )
+            #     # if st.session_state.logged_prompt:
+            #     #     #st.write(f"#### :blue[Example model generation: {generation}]")
+            #     #     # 3. log some user feedback
+            #     #     user_feedback = collector.st_feedback(
+            #     #         component="default",
+            #     #         feedback_type="thumbs",
+            #     #         open_feedback_label="[Optional] Provide additional feedback",
+            #     #         model=st.session_state.logged_prompt.config_model.model,
+            #     #         prompt_id=st.session_state.logged_prompt.id,
+            #     #         key=st.session_state.feedback_key,
+            #     #         align="flex-start",
+            #     #     )
 
        
-                exapnder = st.expander("Document Used")
-                do11 = df1[(df1['CustomName']==concept_option) & (df1['Representative_document']==True)]['Document'].reset_index(drop=True)
-                exapnder.write(pd.DataFrame(do11).to_html(escape=False), unsafe_allow_html=True)
+            #     exapnder = st.expander("Document Used")
+            #     do11 = df1[(df1['CustomName']==concept_option) & (df1['Representative_document']==True)]['Document'].reset_index(drop=True)
+            #     exapnder.write(pd.DataFrame(do11).to_html(escape=False), unsafe_allow_html=True)
 
                 
-                st.markdown("<h5 style='text-align: center; color: grey;'> Non-Representative Docs base Summary(Hierarchy and Structure) </h5>", unsafe_allow_html=True)
-                do111 = df2[(df2['Topics']==concept_option) & (df2['Summary Type']=='Hierarchy and Structure')]['Summary Variants'].reset_index(drop=True)[0]
-                st.write(do111)
+            #     st.markdown("<h5 style='text-align: center; color: grey;'> Non-Representative Docs base Summary(Hierarchy and Structure) </h5>", unsafe_allow_html=True)
+            #     do111 = df2[(df2['Topics']==concept_option) & (df2['Summary Type']=='Hierarchy and Structure')]['Summary Variants'].reset_index(drop=True)[0]
+            #     st.write(do111)
              
-                # if "logged_prompt" not in st.session_state:
-                #     st.session_state.logged_prompt = None
-                # if "feedback_key" not in st.session_state:
-                #     st.session_state.feedback_key = 40
+            #     # if "logged_prompt" not in st.session_state:
+            #     #     st.session_state.logged_prompt = None
+            #     # if "feedback_key" not in st.session_state:
+            #     #     st.session_state.feedback_key = 40
                 
-                # # 1. authenticate with trubrics
-                # collector = FeedbackCollector(email='smnitrkl50@gmail.com', password='Ram@2107', project="default")
+            #     # # 1. authenticate with trubrics
+            #     # collector = FeedbackCollector(email='smnitrkl50@gmail.com', password='Ram@2107', project="default")
                 
-                # if st.button("Refresh",key = '30'):
-                #     st.session_state.feedback_key += 1
-                #     st.session_state.logged_prompt = None
-                #     st.experimental_rerun()
+            #     # if st.button("Refresh",key = '30'):
+            #     #     st.session_state.feedback_key += 1
+            #     #     st.session_state.logged_prompt = None
+            #     #     st.experimental_rerun()
                 
-                # prompt = "Tell me a joke"
-                # generation = "Why did the chicken cross the road? To get to the other side."
-                # #st.write(f"#### :orange[Example user prompt: {prompt}]")
+            #     # prompt = "Tell me a joke"
+            #     # generation = "Why did the chicken cross the road? To get to the other side."
+            #     # #st.write(f"#### :orange[Example user prompt: {prompt}]")
                 
                 
-                # if st.button("To share FEEDBACK, Click here!!", key = '300'):
-                #     # 2. log a user prompt & model response
-                #     st.session_state.logged_prompt = collector.log_prompt(
-                #         config_model={"model": "llama-13b"},
-                #         prompt=prompt,
-                #         generation=generation,
-                #     )
+            #     # if st.button("To share FEEDBACK, Click here!!", key = '300'):
+            #     #     # 2. log a user prompt & model response
+            #     #     st.session_state.logged_prompt = collector.log_prompt(
+            #     #         config_model={"model": "llama-13b"},
+            #     #         prompt=prompt,
+            #     #         generation=generation,
+            #     #     )
                 
-                # if st.session_state.logged_prompt:
-                #     #st.write(f"#### :blue[Example model generation: {generation}]")
-                #     # 3. log some user feedback
-                #     user_feedback = collector.st_feedback(
-                #         component="default",
-                #         feedback_type="thumbs",
-                #         open_feedback_label="[Optional] Provide additional feedback",
-                #         model=st.session_state.logged_prompt.config_model.model,
-                #         prompt_id=st.session_state.logged_prompt.id,
-                #         key=st.session_state.feedback_key,
-                #         align="flex-start",
-                #     )
+            #     # if st.session_state.logged_prompt:
+            #     #     #st.write(f"#### :blue[Example model generation: {generation}]")
+            #     #     # 3. log some user feedback
+            #     #     user_feedback = collector.st_feedback(
+            #     #         component="default",
+            #     #         feedback_type="thumbs",
+            #     #         open_feedback_label="[Optional] Provide additional feedback",
+            #     #         model=st.session_state.logged_prompt.config_model.model,
+            #     #         prompt_id=st.session_state.logged_prompt.id,
+            #     #         key=st.session_state.feedback_key,
+            #     #         align="flex-start",
+            #     #     )
 
            
-                exapnder = st.expander("Document Used")
-                do11 = df1[(df1['CustomName']==concept_option) & (df1['Representative_document']==False)]['Document'].reset_index(drop=True)
-                exapnder.write(pd.DataFrame(do11).to_html(escape=False), unsafe_allow_html=True)
+            #     exapnder = st.expander("Document Used")
+            #     do11 = df1[(df1['CustomName']==concept_option) & (df1['Representative_document']==False)]['Document'].reset_index(drop=True)
+            #     exapnder.write(pd.DataFrame(do11).to_html(escape=False), unsafe_allow_html=True)
 
 
-            with tab3:
-                st.markdown("<h5 style='text-align: center; color: grey;'> Representative Docs base Summary (Logical Flow of Arguments) </h5>", unsafe_allow_html=True)
-                do1 = df[(df['Topics']==concept_option) & (df['Summary Type']=='Logical Flow of Arguments')]['Summary Variants'].reset_index(drop=True)[0]
-                st.write(do1)
+            # with tab3:
+            #     st.markdown("<h5 style='text-align: center; color: grey;'> Representative Docs base Summary (Logical Flow of Arguments) </h5>", unsafe_allow_html=True)
+            #     do1 = df[(df['Topics']==concept_option) & (df['Summary Type']=='Logical Flow of Arguments')]['Summary Variants'].reset_index(drop=True)[0]
+            #     st.write(do1)
 
                 
-                # if "logged_prompt" not in st.session_state:
-                #     st.session_state.logged_prompt = None
-                # if "feedback_key" not in st.session_state:
-                #     st.session_state.feedback_key = 50
+            #     # if "logged_prompt" not in st.session_state:
+            #     #     st.session_state.logged_prompt = None
+            #     # if "feedback_key" not in st.session_state:
+            #     #     st.session_state.feedback_key = 50
                 
-                # # 1. authenticate with trubrics
-                # collector = FeedbackCollector(email='smnitrkl50@gmail.com', password='Ram@2107', project="default")
+            #     # # 1. authenticate with trubrics
+            #     # collector = FeedbackCollector(email='smnitrkl50@gmail.com', password='Ram@2107', project="default")
                 
-                # if st.button("Refresh",key = '40'):
-                #     st.session_state.feedback_key += 1
-                #     st.session_state.logged_prompt = None
-                #     st.experimental_rerun()
+            #     # if st.button("Refresh",key = '40'):
+            #     #     st.session_state.feedback_key += 1
+            #     #     st.session_state.logged_prompt = None
+            #     #     st.experimental_rerun()
                 
-                # prompt = "Tell me a joke"
-                # generation = "Why did the chicken cross the road? To get to the other side."
-                # #st.write(f"#### :orange[Example user prompt: {prompt}]")
-                
-                
-                # if st.button("To share FEEDBACK, Click here!!", key = '400'):
-                #     # 2. log a user prompt & model response
-                #     st.session_state.logged_prompt = collector.log_prompt(
-                #         config_model={"model": "llama-13b"},
-                #         prompt=prompt,
-                #         generation=generation,
-                #     )
-                
-                # if st.session_state.logged_prompt:
-                #     #st.write(f"#### :blue[Example model generation: {generation}]")
-                #     # 3. log some user feedback
-                #     user_feedback = collector.st_feedback(
-                #         component="default",
-                #         feedback_type="thumbs",
-                #         open_feedback_label="[Optional] Provide additional feedback",
-                #         model=st.session_state.logged_prompt.config_model.model,
-                #         prompt_id=st.session_state.logged_prompt.id,
-                #         key=st.session_state.feedback_key,
-                #         align="flex-start",
-                #     )
-
-            
-                exapnder = st.expander("Document Used")
-                do11 = df1[(df1['CustomName']==concept_option) & (df1['Representative_document']==True)]['Document'].reset_index(drop=True)
-                exapnder.write(pd.DataFrame(do11).to_html(escape=False), unsafe_allow_html=True)
-
-                
-                st.markdown("<h5 style='text-align: center; color: grey;'> Non-Representative Docs base Summary(Logical Flow of Arguments) </h5>", unsafe_allow_html=True)
-                do111 = df2[(df2['Topics']==concept_option) & (df2['Summary Type']=='Logical Flow of Arguments')]['Summary Variants'].reset_index(drop=True)[0]
-                st.write(do111)
-
-                
-                # if "logged_prompt" not in st.session_state:
-                #     st.session_state.logged_prompt = None
-                # if "feedback_key" not in st.session_state:
-                #     st.session_state.feedback_key = 60
-                
-                # # 1. authenticate with trubrics
-                # collector = FeedbackCollector(email='smnitrkl50@gmail.com', password='Ram@2107', project="default")
-                
-                # if st.button("Refresh",key = '50'):
-                #     st.session_state.feedback_key += 1
-                #     st.session_state.logged_prompt = None
-                #     st.experimental_rerun()
-                
-                # prompt = "Tell me a joke"
-                # generation = "Why did the chicken cross the road? To get to the other side."
-                # #st.write(f"#### :orange[Example user prompt: {prompt}]")
+            #     # prompt = "Tell me a joke"
+            #     # generation = "Why did the chicken cross the road? To get to the other side."
+            #     # #st.write(f"#### :orange[Example user prompt: {prompt}]")
                 
                 
-                # if st.button("To share FEEDBACK, Click here!!", key = '500'):
-                #     # 2. log a user prompt & model response
-                #     st.session_state.logged_prompt = collector.log_prompt(
-                #         config_model={"model": "llama-13b"},
-                #         prompt=prompt,
-                #         generation=generation,
-                #     )
+            #     # if st.button("To share FEEDBACK, Click here!!", key = '400'):
+            #     #     # 2. log a user prompt & model response
+            #     #     st.session_state.logged_prompt = collector.log_prompt(
+            #     #         config_model={"model": "llama-13b"},
+            #     #         prompt=prompt,
+            #     #         generation=generation,
+            #     #     )
                 
-                # if st.session_state.logged_prompt:
-                #     #st.write(f"#### :blue[Example model generation: {generation}]")
-                #     # 3. log some user feedback
-                #     user_feedback = collector.st_feedback(
-                #         component="default",
-                #         feedback_type="thumbs",
-                #         open_feedback_label="[Optional] Provide additional feedback",
-                #         model=st.session_state.logged_prompt.config_model.model,
-                #         prompt_id=st.session_state.logged_prompt.id,
-                #         key=st.session_state.feedback_key,
-                #         align="flex-start",
-                #     )
+            #     # if st.session_state.logged_prompt:
+            #     #     #st.write(f"#### :blue[Example model generation: {generation}]")
+            #     #     # 3. log some user feedback
+            #     #     user_feedback = collector.st_feedback(
+            #     #         component="default",
+            #     #         feedback_type="thumbs",
+            #     #         open_feedback_label="[Optional] Provide additional feedback",
+            #     #         model=st.session_state.logged_prompt.config_model.model,
+            #     #         prompt_id=st.session_state.logged_prompt.id,
+            #     #         key=st.session_state.feedback_key,
+            #     #         align="flex-start",
+            #     #     )
 
             
-                exapnder = st.expander("Document Used")
-                do11 = df1[(df1['CustomName']==concept_option) & (df1['Representative_document']==False)]['Document'].reset_index(drop=True)
-                exapnder.write(pd.DataFrame(do11).to_html(escape=False), unsafe_allow_html=True)
+            #     exapnder = st.expander("Document Used")
+            #     do11 = df1[(df1['CustomName']==concept_option) & (df1['Representative_document']==True)]['Document'].reset_index(drop=True)
+            #     exapnder.write(pd.DataFrame(do11).to_html(escape=False), unsafe_allow_html=True)
+
+                
+            #     st.markdown("<h5 style='text-align: center; color: grey;'> Non-Representative Docs base Summary(Logical Flow of Arguments) </h5>", unsafe_allow_html=True)
+            #     do111 = df2[(df2['Topics']==concept_option) & (df2['Summary Type']=='Logical Flow of Arguments')]['Summary Variants'].reset_index(drop=True)[0]
+            #     st.write(do111)
+
+                
+            #     # if "logged_prompt" not in st.session_state:
+            #     #     st.session_state.logged_prompt = None
+            #     # if "feedback_key" not in st.session_state:
+            #     #     st.session_state.feedback_key = 60
+                
+            #     # # 1. authenticate with trubrics
+            #     # collector = FeedbackCollector(email='smnitrkl50@gmail.com', password='Ram@2107', project="default")
+                
+            #     # if st.button("Refresh",key = '50'):
+            #     #     st.session_state.feedback_key += 1
+            #     #     st.session_state.logged_prompt = None
+            #     #     st.experimental_rerun()
+                
+            #     # prompt = "Tell me a joke"
+            #     # generation = "Why did the chicken cross the road? To get to the other side."
+            #     # #st.write(f"#### :orange[Example user prompt: {prompt}]")
+                
+                
+            #     # if st.button("To share FEEDBACK, Click here!!", key = '500'):
+            #     #     # 2. log a user prompt & model response
+            #     #     st.session_state.logged_prompt = collector.log_prompt(
+            #     #         config_model={"model": "llama-13b"},
+            #     #         prompt=prompt,
+            #     #         generation=generation,
+            #     #     )
+                
+            #     # if st.session_state.logged_prompt:
+            #     #     #st.write(f"#### :blue[Example model generation: {generation}]")
+            #     #     # 3. log some user feedback
+            #     #     user_feedback = collector.st_feedback(
+            #     #         component="default",
+            #     #         feedback_type="thumbs",
+            #     #         open_feedback_label="[Optional] Provide additional feedback",
+            #     #         model=st.session_state.logged_prompt.config_model.model,
+            #     #         prompt_id=st.session_state.logged_prompt.id,
+            #     #         key=st.session_state.feedback_key,
+            #     #         align="flex-start",
+            #     #     )
+
+            
+            #     exapnder = st.expander("Document Used")
+            #     do11 = df1[(df1['CustomName']==concept_option) & (df1['Representative_document']==False)]['Document'].reset_index(drop=True)
+            #     exapnder.write(pd.DataFrame(do11).to_html(escape=False), unsafe_allow_html=True)
 
 
-            with tab4:
-                st.markdown("<h5 style='text-align: center; color: grey;'> Representative Docs base Summary (Retrospectives and Prospectives) </h5>", unsafe_allow_html=True)
-                do1 = df[(df['Topics']==concept_option) & (df['Summary Type']=='Retrospectives and Prospectives')]['Summary Variants'].reset_index(drop=True)[0]
-                st.write(do1)
+            # with tab4:
+            #     st.markdown("<h5 style='text-align: center; color: grey;'> Representative Docs base Summary (Retrospectives and Prospectives) </h5>", unsafe_allow_html=True)
+            #     do1 = df[(df['Topics']==concept_option) & (df['Summary Type']=='Retrospectives and Prospectives')]['Summary Variants'].reset_index(drop=True)[0]
+            #     st.write(do1)
 
                  
-                # if "logged_prompt" not in st.session_state:
-                #     st.session_state.logged_prompt = None
-                # if "feedback_key" not in st.session_state:
-                #     st.session_state.feedback_key = 70
+            #     # if "logged_prompt" not in st.session_state:
+            #     #     st.session_state.logged_prompt = None
+            #     # if "feedback_key" not in st.session_state:
+            #     #     st.session_state.feedback_key = 70
                 
-                # # 1. authenticate with trubrics
-                # collector = FeedbackCollector(email='smnitrkl50@gmail.com', password='Ram@2107', project="default")
+            #     # # 1. authenticate with trubrics
+            #     # collector = FeedbackCollector(email='smnitrkl50@gmail.com', password='Ram@2107', project="default")
                 
-                # if st.button("Refresh",key = '60'):
-                #     st.session_state.feedback_key += 1
-                #     st.session_state.logged_prompt = None
-                #     st.experimental_rerun()
+            #     # if st.button("Refresh",key = '60'):
+            #     #     st.session_state.feedback_key += 1
+            #     #     st.session_state.logged_prompt = None
+            #     #     st.experimental_rerun()
                 
-                # prompt = "Tell me a joke"
-                # generation = "Why did the chicken cross the road? To get to the other side."
-                # #st.write(f"#### :orange[Example user prompt: {prompt}]")
+            #     # prompt = "Tell me a joke"
+            #     # generation = "Why did the chicken cross the road? To get to the other side."
+            #     # #st.write(f"#### :orange[Example user prompt: {prompt}]")
                 
                 
-                # if st.button("To share FEEDBACK, Click here!!", key = '600'):
-                #     # 2. log a user prompt & model response
-                #     st.session_state.logged_prompt = collector.log_prompt(
-                #         config_model={"model": "llama-13b"},
-                #         prompt=prompt,
-                #         generation=generation,
-                #     )
+            #     # if st.button("To share FEEDBACK, Click here!!", key = '600'):
+            #     #     # 2. log a user prompt & model response
+            #     #     st.session_state.logged_prompt = collector.log_prompt(
+            #     #         config_model={"model": "llama-13b"},
+            #     #         prompt=prompt,
+            #     #         generation=generation,
+            #     #     )
                 
-                # if st.session_state.logged_prompt:
-                #     #st.write(f"#### :blue[Example model generation: {generation}]")
-                #     # 3. log some user feedback
-                #     user_feedback = collector.st_feedback(
-                #         component="default",
-                #         feedback_type="thumbs",
-                #         open_feedback_label="[Optional] Provide additional feedback",
-                #         model=st.session_state.logged_prompt.config_model.model,
-                #         prompt_id=st.session_state.logged_prompt.id,
-                #         key=st.session_state.feedback_key,
-                #         align="flex-start",
-                #     )
+            #     # if st.session_state.logged_prompt:
+            #     #     #st.write(f"#### :blue[Example model generation: {generation}]")
+            #     #     # 3. log some user feedback
+            #     #     user_feedback = collector.st_feedback(
+            #     #         component="default",
+            #     #         feedback_type="thumbs",
+            #     #         open_feedback_label="[Optional] Provide additional feedback",
+            #     #         model=st.session_state.logged_prompt.config_model.model,
+            #     #         prompt_id=st.session_state.logged_prompt.id,
+            #     #         key=st.session_state.feedback_key,
+            #     #         align="flex-start",
+            #     #     )
 
             
-                exapnder = st.expander("Document Used")
-                do11 = df1[(df1['CustomName']==concept_option) & (df1['Representative_document']==True)]['Document'].reset_index(drop=True)
-                exapnder.write(pd.DataFrame(do11).to_html(escape=False), unsafe_allow_html=True)
+            #     exapnder = st.expander("Document Used")
+            #     do11 = df1[(df1['CustomName']==concept_option) & (df1['Representative_document']==True)]['Document'].reset_index(drop=True)
+            #     exapnder.write(pd.DataFrame(do11).to_html(escape=False), unsafe_allow_html=True)
 
                 
-                st.markdown("<h5 style='text-align: center; color: grey;'> Non-Representative Docs base Summary(Retrospectives and Prospectivese) </h5>", unsafe_allow_html=True)
-                do111 = df2[(df2['Topics']==concept_option) & (df2['Summary Type']=='Retrospectives and Prospectives')]['Summary Variants'].reset_index(drop=True)[0]
-                st.write(do111)
+            #     st.markdown("<h5 style='text-align: center; color: grey;'> Non-Representative Docs base Summary(Retrospectives and Prospectivese) </h5>", unsafe_allow_html=True)
+            #     do111 = df2[(df2['Topics']==concept_option) & (df2['Summary Type']=='Retrospectives and Prospectives')]['Summary Variants'].reset_index(drop=True)[0]
+            #     st.write(do111)
                 
                
-                # if "logged_prompt" not in st.session_state:
-                #     st.session_state.logged_prompt = None
-                # if "feedback_key" not in st.session_state:
-                #     st.session_state.feedback_key = 80
+            #     # if "logged_prompt" not in st.session_state:
+            #     #     st.session_state.logged_prompt = None
+            #     # if "feedback_key" not in st.session_state:
+            #     #     st.session_state.feedback_key = 80
                 
-                # # 1. authenticate with trubrics
-                # collector = FeedbackCollector(email='smnitrkl50@gmail.com', password='Ram@2107', project="default")
+            #     # # 1. authenticate with trubrics
+            #     # collector = FeedbackCollector(email='smnitrkl50@gmail.com', password='Ram@2107', project="default")
                 
-                # if st.button("Refresh",key = '70'):
-                #     st.session_state.feedback_key += 1
-                #     st.session_state.logged_prompt = None
-                #     st.experimental_rerun()
+            #     # if st.button("Refresh",key = '70'):
+            #     #     st.session_state.feedback_key += 1
+            #     #     st.session_state.logged_prompt = None
+            #     #     st.experimental_rerun()
                 
-                # prompt = "Tell me a joke"
-                # generation = "Why did the chicken cross the road? To get to the other side."
-                # #st.write(f"#### :orange[Example user prompt: {prompt}]")
+            #     # prompt = "Tell me a joke"
+            #     # generation = "Why did the chicken cross the road? To get to the other side."
+            #     # #st.write(f"#### :orange[Example user prompt: {prompt}]")
                 
                 
-                # if st.button("To share FEEDBACK, Click here!!", key = '700'):
-                #     # 2. log a user prompt & model response
-                #     st.session_state.logged_prompt = collector.log_prompt(
-                #         config_model={"model": "llama-13b"},
-                #         prompt=prompt,
-                #         generation=generation,
-                #     )
+            #     # if st.button("To share FEEDBACK, Click here!!", key = '700'):
+            #     #     # 2. log a user prompt & model response
+            #     #     st.session_state.logged_prompt = collector.log_prompt(
+            #     #         config_model={"model": "llama-13b"},
+            #     #         prompt=prompt,
+            #     #         generation=generation,
+            #     #     )
                 
-                # if st.session_state.logged_prompt:
-                #     #st.write(f"#### :blue[Example model generation: {generation}]")
-                #     # 3. log some user feedback
-                #     user_feedback = collector.st_feedback(
-                #         component="default",
-                #         feedback_type="thumbs",
-                #         open_feedback_label="[Optional] Provide additional feedback",
-                #         model=st.session_state.logged_prompt.config_model.model,
-                #         prompt_id=st.session_state.logged_prompt.id,
-                #         key=st.session_state.feedback_key,
-                #         align="flex-start",
-                #     )
+            #     # if st.session_state.logged_prompt:
+            #     #     #st.write(f"#### :blue[Example model generation: {generation}]")
+            #     #     # 3. log some user feedback
+            #     #     user_feedback = collector.st_feedback(
+            #     #         component="default",
+            #     #         feedback_type="thumbs",
+            #     #         open_feedback_label="[Optional] Provide additional feedback",
+            #     #         model=st.session_state.logged_prompt.config_model.model,
+            #     #         prompt_id=st.session_state.logged_prompt.id,
+            #     #         key=st.session_state.feedback_key,
+            #     #         align="flex-start",
+            #     #     )
             
-                exapnder = st.expander("Document Used")
-                do11 = df1[(df1['CustomName']==concept_option) & (df1['Representative_document']==False)]['Document'].reset_index(drop=True)
-                exapnder.write(pd.DataFrame(do11).to_html(escape=False), unsafe_allow_html=True)
-            with tab5:
-                st.markdown("<h5 style='text-align: center; color: grey;'> Representative Docs base Summary (Correlations and Associations) </h5>", unsafe_allow_html=True)
-                do1 = df[(df['Topics']==concept_option) & (df['Summary Type']=='Correlations and Associations')]['Summary Variants'].reset_index(drop=True)[0]
-                st.write(do1)
+            #     exapnder = st.expander("Document Used")
+            #     do11 = df1[(df1['CustomName']==concept_option) & (df1['Representative_document']==False)]['Document'].reset_index(drop=True)
+            #     exapnder.write(pd.DataFrame(do11).to_html(escape=False), unsafe_allow_html=True)
+            # with tab5:
+            #     st.markdown("<h5 style='text-align: center; color: grey;'> Representative Docs base Summary (Correlations and Associations) </h5>", unsafe_allow_html=True)
+            #     do1 = df[(df['Topics']==concept_option) & (df['Summary Type']=='Correlations and Associations')]['Summary Variants'].reset_index(drop=True)[0]
+            #     st.write(do1)
                 
 
-                # if "logged_prompt" not in st.session_state:
-                #     st.session_state.logged_prompt = None
-                # if "feedback_key" not in st.session_state:
-                #     st.session_state.feedback_key = 90
+            #     # if "logged_prompt" not in st.session_state:
+            #     #     st.session_state.logged_prompt = None
+            #     # if "feedback_key" not in st.session_state:
+            #     #     st.session_state.feedback_key = 90
                 
-                # # 1. authenticate with trubrics
-                # collector = FeedbackCollector(email='smnitrkl50@gmail.com', password='Ram@2107', project="default")
+            #     # # 1. authenticate with trubrics
+            #     # collector = FeedbackCollector(email='smnitrkl50@gmail.com', password='Ram@2107', project="default")
                 
-                # if st.button("Refresh",key = '80'):
-                #     st.session_state.feedback_key += 1
-                #     st.session_state.logged_prompt = None
-                #     st.experimental_rerun()
+            #     # if st.button("Refresh",key = '80'):
+            #     #     st.session_state.feedback_key += 1
+            #     #     st.session_state.logged_prompt = None
+            #     #     st.experimental_rerun()
                 
-                # prompt = "Tell me a joke"
-                # generation = "Why did the chicken cross the road? To get to the other side."
-                # #st.write(f"#### :orange[Example user prompt: {prompt}]")
+            #     # prompt = "Tell me a joke"
+            #     # generation = "Why did the chicken cross the road? To get to the other side."
+            #     # #st.write(f"#### :orange[Example user prompt: {prompt}]")
                 
                 
-                # if st.button("To share FEEDBACK, Click here!!", key = '800'):
-                #     # 2. log a user prompt & model response
-                #     st.session_state.logged_prompt = collector.log_prompt(
-                #         config_model={"model": "llama-13b"},
-                #         prompt=prompt,
-                #         generation=generation,
-                #     )
+            #     # if st.button("To share FEEDBACK, Click here!!", key = '800'):
+            #     #     # 2. log a user prompt & model response
+            #     #     st.session_state.logged_prompt = collector.log_prompt(
+            #     #         config_model={"model": "llama-13b"},
+            #     #         prompt=prompt,
+            #     #         generation=generation,
+            #     #     )
                 
-                # if st.session_state.logged_prompt:
-                #     #st.write(f"#### :blue[Example model generation: {generation}]")
-                #     # 3. log some user feedback
-                #     user_feedback = collector.st_feedback(
-                #         component="default",
-                #         feedback_type="thumbs",
-                #         open_feedback_label="[Optional] Provide additional feedback",
-                #         model=st.session_state.logged_prompt.config_model.model,
-                #         prompt_id=st.session_state.logged_prompt.id,
-                #         key=st.session_state.feedback_key,
-                #         align="flex-start",
-                #     )
+            #     # if st.session_state.logged_prompt:
+            #     #     #st.write(f"#### :blue[Example model generation: {generation}]")
+            #     #     # 3. log some user feedback
+            #     #     user_feedback = collector.st_feedback(
+            #     #         component="default",
+            #     #         feedback_type="thumbs",
+            #     #         open_feedback_label="[Optional] Provide additional feedback",
+            #     #         model=st.session_state.logged_prompt.config_model.model,
+            #     #         prompt_id=st.session_state.logged_prompt.id,
+            #     #         key=st.session_state.feedback_key,
+            #     #         align="flex-start",
+            #     #     )
 
    
-                exapnder = st.expander("Document Used")
-                do11 = df1[(df1['CustomName']==concept_option) & (df1['Representative_document']==True)]['Document'].reset_index(drop=True)
-                exapnder.write(pd.DataFrame(do11).to_html(escape=False), unsafe_allow_html=True)
+            #     exapnder = st.expander("Document Used")
+            #     do11 = df1[(df1['CustomName']==concept_option) & (df1['Representative_document']==True)]['Document'].reset_index(drop=True)
+            #     exapnder.write(pd.DataFrame(do11).to_html(escape=False), unsafe_allow_html=True)
 
                 
-                st.markdown("<h5 style='text-align: center; color: grey;'> Non-Representative Docs base Summary(Correlations and Associations) </h5>", unsafe_allow_html=True)
-                do111 = df2[(df2['Topics']==concept_option) & (df2['Summary Type']=='Correlations and Associations')]['Summary Variants'].reset_index(drop=True)[0]
-                st.write(do111)
+            #     st.markdown("<h5 style='text-align: center; color: grey;'> Non-Representative Docs base Summary(Correlations and Associations) </h5>", unsafe_allow_html=True)
+            #     do111 = df2[(df2['Topics']==concept_option) & (df2['Summary Type']=='Correlations and Associations')]['Summary Variants'].reset_index(drop=True)[0]
+            #     st.write(do111)
 
 
-                # if "logged_prompt" not in st.session_state:
-                #     st.session_state.logged_prompt = None
-                # if "feedback_key" not in st.session_state:
-                #     st.session_state.feedback_key = 100
+            #     # if "logged_prompt" not in st.session_state:
+            #     #     st.session_state.logged_prompt = None
+            #     # if "feedback_key" not in st.session_state:
+            #     #     st.session_state.feedback_key = 100
                 
-                # # 1. authenticate with trubrics
-                # collector = FeedbackCollector(email='smnitrkl50@gmail.com', password='Ram@2107', project="default")
+            #     # # 1. authenticate with trubrics
+            #     # collector = FeedbackCollector(email='smnitrkl50@gmail.com', password='Ram@2107', project="default")
                 
-                # if st.button("Refresh",key = '90'):
-                #     st.session_state.feedback_key += 1
-                #     st.session_state.logged_prompt = None
-                #     st.experimental_rerun()
+            #     # if st.button("Refresh",key = '90'):
+            #     #     st.session_state.feedback_key += 1
+            #     #     st.session_state.logged_prompt = None
+            #     #     st.experimental_rerun()
                 
-                # prompt = "Tell me a joke"
-                # generation = "Why did the chicken cross the road? To get to the other side."
-                # #st.write(f"#### :orange[Example user prompt: {prompt}]")
+            #     # prompt = "Tell me a joke"
+            #     # generation = "Why did the chicken cross the road? To get to the other side."
+            #     # #st.write(f"#### :orange[Example user prompt: {prompt}]")
                 
                 
-                # if st.button("To share FEEDBACK, Click here!!", key = '900'):
-                #     # 2. log a user prompt & model response
-                #     st.session_state.logged_prompt = collector.log_prompt(
-                #         config_model={"model": "llama-13b"},
-                #         prompt=prompt,
-                #         generation=generation,
-                #     )
+            #     # if st.button("To share FEEDBACK, Click here!!", key = '900'):
+            #     #     # 2. log a user prompt & model response
+            #     #     st.session_state.logged_prompt = collector.log_prompt(
+            #     #         config_model={"model": "llama-13b"},
+            #     #         prompt=prompt,
+            #     #         generation=generation,
+            #     #     )
                 
-                # if st.session_state.logged_prompt:
-                #     #st.write(f"#### :blue[Example model generation: {generation}]")
-                #     # 3. log some user feedback
-                #     user_feedback = collector.st_feedback(
-                #         component="default",
-                #         feedback_type="thumbs",
-                #         open_feedback_label="[Optional] Provide additional feedback",
-                #         model=st.session_state.logged_prompt.config_model.model,
-                #         prompt_id=st.session_state.logged_prompt.id,
-                #         key=st.session_state.feedback_key,
-                #         align="flex-start",
-                #     )
+            #     # if st.session_state.logged_prompt:
+            #     #     #st.write(f"#### :blue[Example model generation: {generation}]")
+            #     #     # 3. log some user feedback
+            #     #     user_feedback = collector.st_feedback(
+            #     #         component="default",
+            #     #         feedback_type="thumbs",
+            #     #         open_feedback_label="[Optional] Provide additional feedback",
+            #     #         model=st.session_state.logged_prompt.config_model.model,
+            #     #         prompt_id=st.session_state.logged_prompt.id,
+            #     #         key=st.session_state.feedback_key,
+            #     #         align="flex-start",
+            #     #     )
 
-                exapnder = st.expander("Document Used")
-                do11 = df1[(df1['CustomName']==concept_option) & (df1['Representative_document']==False)]['Document'].reset_index(drop=True)
-                exapnder.write(pd.DataFrame(do11).to_html(escape=False), unsafe_allow_html=True)
+            #     exapnder = st.expander("Document Used")
+            #     do11 = df1[(df1['CustomName']==concept_option) & (df1['Representative_document']==False)]['Document'].reset_index(drop=True)
+            #     exapnder.write(pd.DataFrame(do11).to_html(escape=False), unsafe_allow_html=True)
 
-            # col_feed = [feedback, feedback1,feedback2,feedback3,feedback4,feedback5,feedback6,feedback7,feedback8,feedback9]
-            # dfeed = pd.DataFrame(col_feed)
-            # dfeed.to_csv('feedback.csv')
+            # # col_feed = [feedback, feedback1,feedback2,feedback3,feedback4,feedback5,feedback6,feedback7,feedback8,feedback9]
+            # # dfeed = pd.DataFrame(col_feed)
+            # # dfeed.to_csv('feedback.csv')
 
-            # def convert_df(df):
-            #    return df.to_csv(index=False).encode('utf-8')
+            # # def convert_df(df):
+            # #    return df.to_csv(index=False).encode('utf-8')
             
             
-            # csv = convert_df(dfeed)
+            # # csv = convert_df(dfeed)
             
-            # st.download_button(
-            #    "Press to Download",
-            #    csv,
-            #    "file.csv",
-            #    "text/csv",
-            #    key='download-csv'
-            # )
+            # # st.download_button(
+            # #    "Press to Download",
+            # #    csv,
+            # #    "file.csv",
+            # #    "text/csv",
+            # #    key='download-csv'
+            # # )
 
         def concept_view_1():
            
