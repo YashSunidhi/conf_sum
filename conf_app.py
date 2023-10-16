@@ -573,95 +573,95 @@ if uploaded_file is not None:
             #    key='download-csv'
             # )
 
-            def concept_view_1():
-               
-                df = pd.read_csv('./test_conf_ectrims_2023/conf_input_data_temp_new_16_oct.csv')
-                abstracts = df['clean_tw'].to_list()
-                titles = df["Title"].to_list()
-                df['Document'] = df['clean_tw']
+        def concept_view_1():
+           
+            df = pd.read_csv('./test_conf_ectrims_2023/conf_input_data_temp_new_16_oct.csv')
+            abstracts = df['clean_tw'].to_list()
+            titles = df["Title"].to_list()
+            df['Document'] = df['clean_tw']
 
 
-                dx = pd.read_csv('./test_conf_ectrims_2023/document_cluster_ectrims_2023.csv')
+            dx = pd.read_csv('./test_conf_ectrims_2023/document_cluster_ectrims_2023.csv')
 
-                dm = df.merge(dx,on='Document',how='inner').fillna('NAP')
-                dm['Gender'] = dm['Gender'].str.replace('unknown','NAP')
-                dm = dm[dm['Topic']>=0].groupby(['CustomName','Country Code','Representation','Gender']).agg({'Document':'count'}).reset_index()
-                fign = px.treemap(dm, path=[px.Constant('ECTRIMS'), 'CustomName','Country Code','Gender'], values='Document',hover_data=['Representation'])
+            dm = df.merge(dx,on='Document',how='inner').fillna('NAP')
+            dm['Gender'] = dm['Gender'].str.replace('unknown','NAP')
+            dm = dm[dm['Topic']>=0].groupby(['CustomName','Country Code','Representation','Gender']).agg({'Document':'count'}).reset_index()
+            fign = px.treemap(dm, path=[px.Constant('ECTRIMS'), 'CustomName','Country Code','Gender'], values='Document',hover_data=['Representation'])
+            
+
+            # Pre-calculate embeddings
+            embedding_model = SentenceTransformer("BAAI/bge-base-en")
+            embeddings = embedding_model.encode(abstracts, show_progress_bar=True)
+            
+            
+            ## Cluster
+            umap_model = UMAP(n_neighbors=13, n_components=5, min_dist=0.0, metric='cosine', random_state=42)
+            hdbscan_model = HDBSCAN(min_cluster_size=5,min_samples=8, gen_min_span_tree=True, prediction_data=True)
+
+            # Pre-reduce embeddings for visualization purposes
+            reduced_embeddings = UMAP(n_neighbors=5, n_components=5, min_dist=0.0, metric='cosine', random_state=42).fit_transform(embeddings)
+
+
+            
+            # umap_model = UMAP(n_neighbors=7, n_components=5, min_dist=0.0, metric='cosine', random_state=42)
+            # hdbscan_model = HDBSCAN(min_cluster_size=7,min_samples=7, gen_min_span_tree=True, prediction_data=True)
+            
+            # # Pre-reduce embeddings for visualization purposes
+            # reduced_embeddings = UMAP(n_neighbors=10, n_components=5, min_dist=0.0, metric='cosine', random_state=42).fit_transform(embeddings)
+
+            loaded_model = BERTopic.load("./test_conf_ectrims_2023")
+            #loaded_model.visualize_documents(titles, reduced_embeddings=reduced_embeddings, hide_annotations=True, hide_document_hover=False, custom_labels=True)
+            #st.markdown("<h4 style='text-align: center; color: black;'> Concept Analysis in Using Visulaization </h4>", unsafe_allow_html=True)
+            fig = loaded_model.visualize_documents(titles, reduced_embeddings=reduced_embeddings, hide_annotations=True, hide_document_hover=False, custom_labels=True)
+            #st.plotly_chart(fig, theme=None, use_container_width=True)
+            #st.markdown("<h4 style='text-align: center; color: black;'> Concept View in Hierarchical Distribution </h4>", unsafe_allow_html=True)
+            hierarchical_topics = loaded_model.hierarchical_topics(abstracts)
+            fig1 = loaded_model.visualize_hierarchy(hierarchical_topics=hierarchical_topics,custom_labels=True)
+            #st.plotly_chart(fig1, theme=None, use_container_width=True)
+            #st.markdown("<h4 style='text-align: center; color: black;'> Progressive View in Hierarchical Distribution </h4>", unsafe_allow_html=True)
+            fig2 = loaded_model.visualize_hierarchical_documents(abstracts, hierarchical_topics, reduced_embeddings=reduced_embeddings,custom_labels=True)
+            #st.plotly_chart(fig2, theme=None, use_container_width=True)
+     
+            #df['Date']= pd.to_datetime(df['Date']).dt.date
+            timestamps = df['Date'].to_list()
+            topics_over_time = loaded_model.topics_over_time(docs=abstracts, 
+                                            timestamps=timestamps, 
+                                            global_tuning=True, 
+                                            evolution_tuning=True, 
+                                            nr_bins=20)
+            #timestamps = list(pd.to_datetime(dx['Date']).dt.date)
+            figt = loaded_model.visualize_topics_over_time(topics_over_time, top_n_topics=31,custom_labels=True)
+            dc = pd.read_csv('./test_conf_ectrims_2023/top_Summary.csv')
+            tab6, tab5, tab0, tab1, tab2, tab3 = st.tabs(["Overall Summary","Temporal-View","Concept-Tweet Distribution","Concept View in Spacial Distribution", "Concept View in Hierarchical Distribution","Progressive View in Hierarchical Distribution"])
+            with tab6:
+                # Use the Streamlit theme.
+                # This is the default. So you can also omit the theme argument.
+                col1, col2 = st.columns([1,1])
+                col1.write(dc['summary'][0])
+                col2.write(dc['tag'][0])
                 
+            
+            with tab5:
+                # Use the Streamlit theme.
+                # This is the default. So you can also omit the theme argument.
+                st.plotly_chart(figt, theme="streamlit", use_container_width=True)
+            
+            with tab0:
+                # Use the Streamlit theme.
+                # This is the default. So you can also omit the theme argument.
+                st.plotly_chart(fign, theme="streamlit", use_container_width=True)
+            
+            with tab1:
+                # Use the Streamlit theme.
+                # This is the default. So you can also omit the theme argument.
+                st.plotly_chart(fig, theme="streamlit", use_container_width=True)
+            with tab2:
+                # Use the native Plotly theme.
+                st.plotly_chart(fig1, theme=None, use_container_width=True)
 
-                # Pre-calculate embeddings
-                embedding_model = SentenceTransformer("BAAI/bge-base-en")
-                embeddings = embedding_model.encode(abstracts, show_progress_bar=True)
-                
-                
-                ## Cluster
-                umap_model = UMAP(n_neighbors=13, n_components=5, min_dist=0.0, metric='cosine', random_state=42)
-                hdbscan_model = HDBSCAN(min_cluster_size=5,min_samples=8, gen_min_span_tree=True, prediction_data=True)
-
-                # Pre-reduce embeddings for visualization purposes
-                reduced_embeddings = UMAP(n_neighbors=5, n_components=5, min_dist=0.0, metric='cosine', random_state=42).fit_transform(embeddings)
-
-
-                
-                # umap_model = UMAP(n_neighbors=7, n_components=5, min_dist=0.0, metric='cosine', random_state=42)
-                # hdbscan_model = HDBSCAN(min_cluster_size=7,min_samples=7, gen_min_span_tree=True, prediction_data=True)
-                
-                # # Pre-reduce embeddings for visualization purposes
-                # reduced_embeddings = UMAP(n_neighbors=10, n_components=5, min_dist=0.0, metric='cosine', random_state=42).fit_transform(embeddings)
-
-                loaded_model = BERTopic.load("./test_conf_ectrims_2023")
-                #loaded_model.visualize_documents(titles, reduced_embeddings=reduced_embeddings, hide_annotations=True, hide_document_hover=False, custom_labels=True)
-                #st.markdown("<h4 style='text-align: center; color: black;'> Concept Analysis in Using Visulaization </h4>", unsafe_allow_html=True)
-                fig = loaded_model.visualize_documents(titles, reduced_embeddings=reduced_embeddings, hide_annotations=True, hide_document_hover=False, custom_labels=True)
-                #st.plotly_chart(fig, theme=None, use_container_width=True)
-                #st.markdown("<h4 style='text-align: center; color: black;'> Concept View in Hierarchical Distribution </h4>", unsafe_allow_html=True)
-                hierarchical_topics = loaded_model.hierarchical_topics(abstracts)
-                fig1 = loaded_model.visualize_hierarchy(hierarchical_topics=hierarchical_topics,custom_labels=True)
-                #st.plotly_chart(fig1, theme=None, use_container_width=True)
-                #st.markdown("<h4 style='text-align: center; color: black;'> Progressive View in Hierarchical Distribution </h4>", unsafe_allow_html=True)
-                fig2 = loaded_model.visualize_hierarchical_documents(abstracts, hierarchical_topics, reduced_embeddings=reduced_embeddings,custom_labels=True)
-                #st.plotly_chart(fig2, theme=None, use_container_width=True)
-         
-                #df['Date']= pd.to_datetime(df['Date']).dt.date
-                timestamps = df['Date'].to_list()
-                topics_over_time = loaded_model.topics_over_time(docs=abstracts, 
-                                                timestamps=timestamps, 
-                                                global_tuning=True, 
-                                                evolution_tuning=True, 
-                                                nr_bins=20)
-                #timestamps = list(pd.to_datetime(dx['Date']).dt.date)
-                figt = loaded_model.visualize_topics_over_time(topics_over_time, top_n_topics=31,custom_labels=True)
-                dc = pd.read_csv('./test_conf_ectrims_2023/top_Summary.csv')
-                tab6, tab5, tab0, tab1, tab2, tab3 = st.tabs(["Overall Summary","Temporal-View","Concept-Tweet Distribution","Concept View in Spacial Distribution", "Concept View in Hierarchical Distribution","Progressive View in Hierarchical Distribution"])
-                with tab6:
-                    # Use the Streamlit theme.
-                    # This is the default. So you can also omit the theme argument.
-                    col1, col2 = st.columns([1,1])
-                    col1.write(dc['summary'][0])
-                    col2.write(dc['tag'][0])
-                    
-                
-                with tab5:
-                    # Use the Streamlit theme.
-                    # This is the default. So you can also omit the theme argument.
-                    st.plotly_chart(figt, theme="streamlit", use_container_width=True)
-                
-                with tab0:
-                    # Use the Streamlit theme.
-                    # This is the default. So you can also omit the theme argument.
-                    st.plotly_chart(fign, theme="streamlit", use_container_width=True)
-                
-                with tab1:
-                    # Use the Streamlit theme.
-                    # This is the default. So you can also omit the theme argument.
-                    st.plotly_chart(fig, theme="streamlit", use_container_width=True)
-                with tab2:
-                    # Use the native Plotly theme.
-                    st.plotly_chart(fig1, theme=None, use_container_width=True)
-
-                with tab3:
-                    # Use the native Plotly theme.
-                    st.plotly_chart(fig2, theme=None, use_container_width=True)
+            with tab3:
+                # Use the native Plotly theme.
+                st.plotly_chart(fig2, theme=None, use_container_width=True)
 
 
 
