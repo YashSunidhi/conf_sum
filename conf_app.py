@@ -647,9 +647,9 @@ if uploaded_file is not None:
             with tab6:
                 # Use the Streamlit theme.
                 # This is the default. So you can also omit the theme argument.
-                col1, col2 = st.columns([1,1])
-                col1.write(dc['summary'][0])
-                col2.write(dc['tag'][0])
+                #col1, col2 = st.columns([1,1])
+                st.write(dc['Summary'][0])
+                #col2.write(dc['tag'][0])
                 
             
             with tab5:
