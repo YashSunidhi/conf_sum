@@ -630,7 +630,7 @@ if uploaded_file is not None:
             fig1 = loaded_model.visualize_hierarchy(hierarchical_topics=hierarchical_topics,custom_labels=True)
             #st.plotly_chart(fig1, theme=None, use_container_width=True)
             #st.markdown("<h4 style='text-align: center; color: black;'> Progressive View in Hierarchical Distribution </h4>", unsafe_allow_html=True)
-            fig2 = loaded_model.visualize_hierarchical_documents(abstracts, hierarchical_topics, reduced_embeddings=reduced_embeddings,custom_labels=True)
+            #fig2 = loaded_model.visualize_hierarchical_documents(abstracts, hierarchical_topics, reduced_embeddings=reduced_embeddings,custom_labels=True)
             #st.plotly_chart(fig2, theme=None, use_container_width=True)
      
             #df['Date']= pd.to_datetime(df['Date']).dt.date
@@ -641,9 +641,9 @@ if uploaded_file is not None:
                                             evolution_tuning=True, 
                                             nr_bins=20)
             #timestamps = list(pd.to_datetime(dx['Date']).dt.date)
-            figt = loaded_model.visualize_topics_over_time(topics_over_time, top_n_topics=31,custom_labels=True)
+            figt = loaded_model.visualize_topics_over_time(topics_over_time, top_n_topics=8,custom_labels=True)
             dc = pd.read_csv('./test_conf_ectrims_2023/top_Summary.csv')
-            tab6, tab5, tab0, tab1, tab2, tab3 = st.tabs(["Overall Summary","Temporal-View","Concept-Tweet Distribution","Concept View in Spacial Distribution", "Concept View in Hierarchical Distribution","Progressive View in Hierarchical Distribution"])
+            tab6, tab5, tab0, tab1, tab2 = st.tabs(["Overall Summary","Temporal-View","Concept-Tweet Distribution","Concept View in Spacial Distribution", "Concept View in Hierarchical Distribution"])
             with tab6:
                 # Use the Streamlit theme.
                 # This is the default. So you can also omit the theme argument.
@@ -670,9 +670,9 @@ if uploaded_file is not None:
                 # Use the native Plotly theme.
                 st.plotly_chart(fig1, theme=None, use_container_width=True)
 
-            with tab3:
-                # Use the native Plotly theme.
-                st.plotly_chart(fig2, theme=None, use_container_width=True)
+            # with tab3:
+            #     # Use the native Plotly theme.
+            #     st.plotly_chart(fig2, theme=None, use_container_width=True)
 
 
 
