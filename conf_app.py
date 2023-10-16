@@ -58,13 +58,16 @@ if uploaded_file is not None:
                 project="default"
             )
             st.write(f"Identified Concept: **{concept_option}**")
-            st.markdown("<h5 style='text-align: center; color: grey;'> Representative Docs base Summary (Problem-Solution Structure) </h5>", unsafe_allow_html=True)
+            #st.markdown("<h5 style='text-align: center; color: grey;'> Representative Docs base Summary (Problem-Solution Structure) </h5>", unsafe_allow_html=True)
             do1 = df[(df['Concept']==concept_option)]['Summary'].reset_index(drop=True)[0]
             do2 = df[(df['Concept']==concept_option)]['Title'].reset_index(drop=True)[0]
+            do3 = '\n\n'.join(df1[(df1['CustomName']==concept_option)]['Document'].reset_index(drop=True).to_list())
             st.markdown("<h6 style='text-align: center; color: grey;'> Concept Title </h6>", unsafe_allow_html=True)
             st.write(do2)
             st.markdown("<h6 style='text-align: center; color: grey;'> Concept Summary </h6>", unsafe_allow_html=True)
             st.write(do1)
+            st.markdown("<h6 style='text-align: center; color: grey;'> Reference Posts </h6>", unsafe_allow_html=True)
+            st.write(do3)
             # st.write(do1)
             # tab1, tab2, tab3, tab4, tab5 = st.tabs(["Problem-Solution Structure","Hierarchy and Structure", "Logical Flow of Arguments","Retrospectives and Prospectives","Correlations and Associations"])
             # with tab1:
