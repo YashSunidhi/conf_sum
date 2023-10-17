@@ -45,6 +45,7 @@ def main_page():
     #col1, col2, col3, col4, col5 = st.columns([1,1,1,1,1])
     
     df = pd.read_csv('./test_conf_ectrims_17_oct_2023/Cluster_Summary_17_Oct_final.csv')
+    df1 = pd.read_csv('./test_conf_ectrims_17_oct_2023/Integrated_Outcome_Sentiment.csv')
     #df['User_Input'] = ''
     #df1 = pd.read_csv(uploaded_file1)
     # df2 = pd.read_csv(uploaded_file2)
@@ -62,13 +63,23 @@ def main_page():
     do1 = df[(df['Concept']==concept_option)]['Summary'].reset_index(drop=True)[0]
     do2 = df[(df['Concept']==concept_option)]['Title'].reset_index(drop=True)[0]
     do3 = df[(df['Concept']==concept_option)]['Represented Document'].reset_index(drop=True).to_list()
+    do3_1 = ' \n\n'.join(df1[(df1['CustomName']==concept_option) & (df1['Sentiment_label']=='positive') ]['Full Text'].reset_index(drop=True).to_list())
+    do3_2 = ' \n\n'.join(df1[(df1['CustomName']==concept_option) & (df1['Sentiment_label']=='negative') ]['Full Text'].reset_index(drop=True).to_list())
+    do3_3 = ' \n\n'.join(df1[(df1['CustomName']==concept_option) & (df1['Sentiment_label']=='neutral') ]['Full Text'].reset_index(drop=True).to_list())
     do4 = ', '.join(df[(df['Concept']==concept_option)]['Keywords_u'].reset_index(drop=True).to_list())
     st.markdown("<h6 style='text-align: center; color: grey;'> Concept Title </h6>", unsafe_allow_html=True)
     st.write(do2)
     st.markdown("<h6 style='text-align: center; color: grey;'> Concept Summary </h6>", unsafe_allow_html=True)
     st.write(do1)
-    st.markdown("<h6 style='text-align: center; color: grey;'> Reference Posts </h6>", unsafe_allow_html=True)
-    st.write(do3[0])
+    # st.markdown("<h6 style='text-align: center; color: grey;'> Reference Posts </h6>", unsafe_allow_html=True)
+    # st.write(do3[0])
+    cola, colb, colc = st.columns([1,1,1])
+    st.markdown("<h6 style='text-align: center; color: grey;'> Reference Post with Positive Sentiments </h6>", unsafe_allow_html=True)
+    cola.write(do3_1)
+    st.markdown("<h6 style='text-align: center; color: grey;'> Reference Post with Negative Sentiments </h6>", unsafe_allow_html=True)
+    cola.write(do3_2)
+    st.markdown("<h6 style='text-align: center; color: grey;'> Reference Post with Neutral Sentiments </h6>", unsafe_allow_html=True)
+    cola.write(do3_3)
     st.markdown("<h6 style='text-align: center; color: grey;'> Keywords Identified </h6>", unsafe_allow_html=True)
     st.write(do4)
 
