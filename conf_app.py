@@ -26,7 +26,7 @@ st.markdown("<h6 style='text-align: center; color: black;'> Understanding Discus
 # if uploaded_file is not None:
 #     if uploaded_file1 is not None:
 #         # if uploaded_file2 is not None:
-def main_page(uploaded_file = uploaded_file,uploaded_file1 = uploaded_file1):
+def main_page():
     #create_space(1)
     with st.expander(label="# To Compare different Summarization and Provide feedback on what good will look like", expanded=False):
         st.markdown("""
