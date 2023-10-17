@@ -46,7 +46,7 @@ def main_page():
     
     df = pd.read_csv('./test_conf_ectrims_17_oct_2023/Cluster_Summary_17_Oct_final.csv')
     #df['User_Input'] = ''
-    df1 = pd.read_csv(uploaded_file1)
+    #df1 = pd.read_csv(uploaded_file1)
     # df2 = pd.read_csv(uploaded_file2)
     concept_option = st.sidebar.selectbox(
     'Concept Selection',
