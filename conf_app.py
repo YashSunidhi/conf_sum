@@ -150,7 +150,19 @@ def concept_view_1():
         colg.metric(label="Number of Categories", value=df['Category Details'].nunique())
         #colc.metric(label="Number of Font Size Used", value=tt.size*1000.nunique())
         st.markdown("<h4 style='text-align: center; color: black;'> Overall Summary </h4>", unsafe_allow_html=True)
-        st.write(dc['Summary'][0])
+        st.write("""Multiple sclerosis (MS) is a complex and debilitating autoimmune disease that affects millions of people worldwide. Recent research presented at the MS Milan conference has shed light on various aspects of the disease, including its pathophysiology, diagnosis, treatment options, and management strategies. Here are some key takeaways from the conference:
+
+1. Longitudinal stability of autoantibody profiles: A study presented at the conference identified a subgroup of individuals with MS who exhibited a stable autoantibody profile throughout the course of their disease, both before and after symptom onset. This finding suggests that these autoantibodies may play a role in the development and progression of MS.
+2. Thalamic atrophy: Another study discussed the role of the thalamus as a relay station in MS and the significance of thalamic atrophy in the disease process. Thalamic atrophy refers to the degeneration of the thalamus, a part of the brain responsible for sensory processing and transmission.
+3. Genetic loci for MS susceptibility and severity: Professor Stephen Hauser's opening lecture at the conference focused on patterns of autoimmunity in different conditions and their potential implications for MS. He also discussed the genetic loci for MS susceptibility and severity, which have important implications for understanding the underlying mechanisms of the disease.
+4. Advancements in molecular medicine for MS: The same lecture highlighted the significant progress made in molecular medicine for MS, particularly in the areas of diagnostics and treatments. New technologies such as next-generation sequencing and advanced imaging techniques have improved our ability to detect and monitor MS.
+5. Evolution of treatment strategies: Ofatumumab, a drug used to treat MS, has been shown to hold the line in patients previously treated with anti-CD20 therapies. Meanwhile, biosimilar natalizumab has demonstrated promising results in treating MS, offering a potentially safer and more cost-effective alternative to existing treatments.
+6. Breastfeeding recommendations: The conference addressed the controversial issue of breastfeeding in MS patients, with experts recommending caution when advising women about breastfeeding while taking disease-modifying therapies (DMTs).
+7. Family planning in women of childbearing age with MS: Another hot topic at the conference was family planning in women of childbearing age with MS. Experts stressed the need for careful consideration and individualized advice regarding contraception and pregnancy planning in these patients.
+8. Safety of anti-CD20 monoclonal antibodies in MS pregnancies: The conference also discussed the safety of anti-CD20 monoclonal antibodies in MS pregnancies. While previous studies raised concerns about the risk of adverse outcomes, newer data suggest that these therapies may be safe to use during pregnancy.
+9. Importance of global health in MS research: The conference emphasized the importance of global health in MS research and treatment. With MS affecting people worldwide, there is a growing need for collaboration and knowledge sharing across countries and cultures.
+10. Commitment to advancing MS research and patient care: Finally, the conference reaffirmed the commitment of the scientific community to advancing MS research and patient care. By bridging science and clinical practice, researchers aim to develop more effective treatments and improve health outcomes for those affected by MS."""
+)
         # #col1, col2 = st.columns([1,1])
         # st.markdown("<h4 style='text-align: center; color: black;'> Some Interesting Facts about Ectrims 2023 </h4>", unsafe_allow_html=True)
         # colh, coli, colj, colk, coll, colf, colg = st.columns(7)
