@@ -28,20 +28,20 @@ st.markdown("<h6 style='text-align: center; color: black;'> Understanding Discus
 #         # if uploaded_file2 is not None:
 def main_page():
     #create_space(1)
-    with st.expander(label="# To Compare different Summarization and Provide feedback on what good will look like", expanded=False):
-        st.markdown("""
+    # with st.expander(label="# To Compare different Summarization and Provide feedback on what good will look like", expanded=False):
+    #     st.markdown("""
 
-        1) Upload Summary of Representative Document
+    #     1) Upload Summary of Representative Document
 
-        2) Upload Document Based Concept Modelled File 
+    #     2) Upload Document Based Concept Modelled File 
 
-        3) Upload Summary of Non- Representative Document
+    #     3) Upload Summary of Non- Representative Document
 
-        4) Observe and Provide Comment
-        """)
-    "---"
+    #     4) Observe and Provide Comment
+    #     """)
+    # "---"
 
-    st.markdown("<h3 style='text-align: center; color: grey;'> Summary Comparision Tool </h3>", unsafe_allow_html=True)
+    st.markdown("<h3 style='text-align: center; color: grey;'> Concept Based Summary Review </h3>", unsafe_allow_html=True)
     #col1, col2, col3, col4, col5 = st.columns([1,1,1,1,1])
     
     df = pd.read_csv('./test_conf_ectrims_17_oct_2023/Cluster_Summary_17_Oct_final.csv')
