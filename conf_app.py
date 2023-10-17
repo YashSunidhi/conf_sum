@@ -182,10 +182,10 @@ def concept_view_1():
 
 
 
-    page_names_to_funcs = {
-        "Concept Analysis": concept_view_1,
-        "Summary Analysis": main_page,
-    }
+page_names_to_funcs = {
+    "Concept Analysis": concept_view_1,
+    "Summary Analysis": main_page,
+}
 
-    selected_page = st.sidebar.selectbox("# Analysis Selection", page_names_to_funcs.keys())
-    page_names_to_funcs[selected_page]()
+selected_page = st.sidebar.selectbox("# Analysis Selection", page_names_to_funcs.keys())
+page_names_to_funcs[selected_page]()
