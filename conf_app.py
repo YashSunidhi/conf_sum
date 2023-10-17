@@ -61,8 +61,8 @@ if uploaded_file is not None:
             #st.markdown("<h5 style='text-align: center; color: grey;'> Representative Docs base Summary (Problem-Solution Structure) </h5>", unsafe_allow_html=True)
             do1 = df[(df['Concept']==concept_option)]['Summary'].reset_index(drop=True)[0]
             do2 = df[(df['Concept']==concept_option)]['Title'].reset_index(drop=True)[0]
-            do3 = df[(df['CustomName']==concept_option)]['Represented Document'].reset_index(drop=True).to_list()
-            do4 = ', '.join(df[(df['CustomName']==concept_option)]['Keywords_u'].reset_index(drop=True).to_list())
+            do3 = df[(df['Concept']==concept_option)]['Represented Document'].reset_index(drop=True).to_list()
+            do4 = ', '.join(df[(df['Concept']==concept_option)]['Keywords_u'].reset_index(drop=True).to_list())
             st.markdown("<h6 style='text-align: center; color: grey;'> Concept Title </h6>", unsafe_allow_html=True)
             st.write(do2)
             st.markdown("<h6 style='text-align: center; color: grey;'> Concept Summary </h6>", unsafe_allow_html=True)
