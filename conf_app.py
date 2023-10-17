@@ -154,7 +154,7 @@ def concept_view_1():
         st.markdown("<h4 style='text-align: center; color: black;'> Some Interesting Facts about Ectrims 2023 </h4>", unsafe_allow_html=True)
         colh, coli, colj, colk, coll, colf, colg = st.columns(7)
         author = df[['Author','Twitter Followers']].drop_duplicates().sort_values('Twitter Followers',ascending=False)['Author'][:5]
-        colh.text_box("Author with Highest Number of Followers",author)
+        colh.markdown("Author with Highest Number of Followers",author)
 
         
     
