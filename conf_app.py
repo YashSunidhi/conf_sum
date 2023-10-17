@@ -132,7 +132,7 @@ def concept_view_1():
                                     evolution_tuning=True, 
                                     nr_bins=30)
     #timestamps = list(pd.to_datetime(dx['Date']).dt.date)
-    figt = loaded_model.visualize_topics_over_time(topics_over_time, top_n_topics=8,custom_labels=True)
+    figt = loaded_model.visualize_topics_over_time(topics_over_time, top_n_topics=15,custom_labels=True)
     dc = pd.read_csv('./test_conf_ectrims_17_oct_2023/top_Summary.csv')
     tab6, tab5, tab0, tab1, tab2 = st.tabs(["Overall Summary","Temporal-View","Concept-Tweet Distribution","Concept View in Spacial Distribution", "Concept View in Hierarchical Distribution"])
     with tab6:
