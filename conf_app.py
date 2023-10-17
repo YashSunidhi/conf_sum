@@ -149,7 +149,8 @@ def concept_view_1():
         colf.metric(label="Number of Countries", value=df['Country Code'].nunique())
         colg.metric(label="Number of Categories", value=df['Category Details'].nunique())
         #colc.metric(label="Number of Font Size Used", value=tt.size*1000.nunique())
-
+        st.markdown("<h4 style='text-align: center; color: black;'> Overall Summary </h4>", unsafe_allow_html=True)
+        st.write(dc['Summary')
         # #col1, col2 = st.columns([1,1])
         # st.markdown("<h4 style='text-align: center; color: black;'> Some Interesting Facts about Ectrims 2023 </h4>", unsafe_allow_html=True)
         # colh, coli, colj, colk, coll, colf, colg = st.columns(7)
