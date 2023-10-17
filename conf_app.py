@@ -114,7 +114,7 @@ def concept_view_1():
     loaded_model = BERTopic.load("./test_conf_ectrims_17_oct_2023")
     #loaded_model.visualize_documents(titles, reduced_embeddings=reduced_embeddings, hide_annotations=True, hide_document_hover=False, custom_labels=True)
     #st.markdown("<h4 style='text-align: center; color: black;'> Concept Analysis in Using Visulaization </h4>", unsafe_allow_html=True)
-    fig = loaded_model.visualize_documents(titles, reduced_embeddings=reduced_embeddings, hide_annotations=True, hide_document_hover=False, custom_labels=True)
+    fig = loaded_model.visualize_documents(titles, reduced_embeddings=embeddings, hide_annotations=True, hide_document_hover=False, custom_labels=True)
     #st.plotly_chart(fig, theme=None, use_container_width=True)
     #st.markdown("<h4 style='text-align: center; color: black;'> Concept View in Hierarchical Distribution </h4>", unsafe_allow_html=True)
     hierarchical_topics = loaded_model.hierarchical_topics(abstracts)
