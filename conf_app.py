@@ -75,7 +75,7 @@ def main_page():
 def concept_view_1():
    
     df = pd.read_csv('./test_conf_ectrims_17_oct_2023/Integrated_Outcome.csv')
-    df = df.fillna('')
+    df = df.fillna('NA')
     abstracts = df['key_words_int_x'].to_list()
     titles = df["Title"].to_list()
     #df['Document'] = df['clean_tw']
@@ -84,7 +84,7 @@ def concept_view_1():
     # dx = pd.read_csv('./test_conf_ectrims_2023/document_cluster_ectrims_2023.csv')
 
     # dm = df.merge(dx,on='Document',how='inner').fillna('NAP')
-    df['Gender'] = df['Gender'].str.replace('unknown','')
+    df['Gender'] = df['Gender'].str.replace('unknown','NA')
     dm = df[df['Topic']>=0].groupby(['CustomName','Country Code','Representation','Gender']).agg({'Document':'count'}).reset_index()
     fign = px.treemap(dm, path=[px.Constant('ECTRIMS'), 'CustomName','Country Code','Gender'], values='Document',hover_data=['Representation'])
     
