@@ -68,7 +68,7 @@ if uploaded_file is not None:
             st.markdown("<h6 style='text-align: center; color: grey;'> Concept Summary </h6>", unsafe_allow_html=True)
             st.write(do1)
             st.markdown("<h6 style='text-align: center; color: grey;'> Reference Posts </h6>", unsafe_allow_html=True)
-            st.write(do3)
+            st.write(do3[0])
             st.markdown("<h6 style='text-align: center; color: grey;'> Keywords Identified </h6>", unsafe_allow_html=True)
             st.write(do4)
             # st.write(do1)
