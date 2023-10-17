@@ -74,7 +74,7 @@ def main_page():
 
 def concept_view_1():
    
-    df = pd.read_csv('./test_conf_ectrims_17_oct_2023/Cluster_Summary_17_Oct_final.csv')
+    df = pd.read_csv('./test_conf_ectrims_17_oct_2023/Integrated_Outcome.csv')
     df = df.fillna('')
     abstracts = df['key_words_int_x'].to_list()
     titles = df["Title"].to_list()
