@@ -130,7 +130,7 @@ def concept_view_1():
                                     timestamps=timestamps, 
                                     global_tuning=True, 
                                     evolution_tuning=True, 
-                                    nr_bins=20)
+                                    nr_bins=30)
     #timestamps = list(pd.to_datetime(dx['Date']).dt.date)
     figt = loaded_model.visualize_topics_over_time(topics_over_time, top_n_topics=8,custom_labels=True)
     dc = pd.read_csv('./test_conf_ectrims_17_oct_2023/top_Summary.csv')
