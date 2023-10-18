@@ -87,7 +87,7 @@ def concept_view_1():
    
     df = pd.read_csv('./test_conf_ectrims_2023_18_oct/Integrated_Outcome_18_oct.csv')
     df = df.fillna('NA')
-    abstracts = df['key_words_int_x'].to_list()
+    abstracts = df['Full Text'].to_list()
     titles = df["Title"].to_list()
     #df['Document'] = df['clean_tw']
 
