@@ -41,7 +41,7 @@ def main_page():
     #     """)
     # "---"
 
-    st.markdown("<h3 style='text-align: center; color: grey;'> Concept Based Summary Review </h3>", unsafe_allow_html=True)
+    st.markdown("<h3 style='text-align: center; color: grey;'> Theme Based Summary Review </h3>", unsafe_allow_html=True)
     #col1, col2, col3, col4, col5 = st.columns([1,1,1,1,1])
     
     df = pd.read_csv('./test_conf_ectrims_2023_18_oct/Cluster_Summary_18_Oct_final.csv')
@@ -58,7 +58,7 @@ def main_page():
         password='Ram@2107',
         project="default"
     )
-    st.write(f"Identified Concept: **{concept_option}**")
+    st.write(f"Identified Theme: **{concept_option}**")
     #st.markdown("<h5 style='text-align: center; color: grey;'> Representative Docs base Summary (Problem-Solution Structure) </h5>", unsafe_allow_html=True)
     do1 = df[(df['Concept']==concept_option)]['Summary'].reset_index(drop=True)[0]
     do2 = df[(df['Concept']==concept_option)]['Title'].reset_index(drop=True)[0]
