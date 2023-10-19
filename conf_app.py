@@ -18,8 +18,8 @@ from trubrics.integrations.streamlit import FeedbackCollector
 from streamlit_feedback import streamlit_feedback
 
 st.set_page_config(layout="wide")
-st.markdown("<h1 style='text-align: center; color: black;'> Conference Assesment Tool </h1>", unsafe_allow_html=True)
-st.markdown("<h6 style='text-align: center; color: black;'> Understanding Discussion, Observation and Opinions </h6>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center; color: black;'> Conference Listening GenAI </h1>", unsafe_allow_html=True)
+st.markdown("<h5 style='text-align: center; color: black;'> Understanding Discussion, Observation and Opinions </h5>", unsafe_allow_html=True)
 # uploaded_file = st.sidebar.file_uploader("Upload a Summary csv File",type= 'csv' , key="file")
 # uploaded_file1 = st.sidebar.file_uploader("Upload a Concept csv File",type= 'csv' , key="file1")
 # # uploaded_file2 = st.sidebar.file_uploader("Upload a Summary NR csv File",type= 'csv' , key="file2")
