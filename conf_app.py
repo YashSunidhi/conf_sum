@@ -50,7 +50,7 @@ def main_page():
     #df1 = pd.read_csv(uploaded_file1)
     # df2 = pd.read_csv(uploaded_file2)
     concept_option = st.sidebar.selectbox(
-    'Concept Selection',
+    'Theme Selection',
     (df['Concept'].unique()))
     
     collector = FeedbackCollector(
