@@ -41,7 +41,7 @@ def main_page():
     #     """)
     # "---"
 
-    st.markdown("<h3 style='text-align: center; color: grey;'> Theme Based Summary Review </h3>", unsafe_allow_html=True)
+    #st.markdown("<h3 style='text-align: center; color: grey;'> Theme Based Summary Review </h3>", unsafe_allow_html=True)
     #col1, col2, col3, col4, col5 = st.columns([1,1,1,1,1])
     
     df = pd.read_csv('./test_conf_ectrims_2023_18_oct/Cluster_Summary_18_Oct_final.csv')
