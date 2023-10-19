@@ -58,7 +58,7 @@ def main_page():
         password='Ram@2107',
         project="default"
     )
-    st.write(f"Identified Theme: **{concept_option}**")
+    #st.write(f"Identified Theme: **{concept_option}**")
     #st.markdown("<h5 style='text-align: center; color: grey;'> Representative Docs base Summary (Problem-Solution Structure) </h5>", unsafe_allow_html=True)
     do1 = df[(df['Concept']==concept_option)]['Summary'].reset_index(drop=True)[0]
     do2 = df[(df['Concept']==concept_option)]['Title'].reset_index(drop=True)[0]
@@ -67,9 +67,9 @@ def main_page():
     # do3_2 = ' \n\n'.join(df1[(df1['CustomName']==concept_option) & (df1['Sentiment_label']=='negative') ]['Full Text'].reset_index(drop=True).to_list())
     # do3_3 = ' \n\n'.join(df1[(df1['CustomName']==concept_option) & (df1['Sentiment_label']=='neutral') ]['Full Text'].reset_index(drop=True).to_list())
     do4 = ', '.join(df[(df['Concept']==concept_option)]['Keywords_u'].reset_index(drop=True).to_list())
-    st.markdown("<h6 style='text-align: center; color: grey;'> Concept Title </h6>", unsafe_allow_html=True)
+    st.markdown("<h6 style='text-align: center; color: grey;'> Theme Title </h6>", unsafe_allow_html=True)
     st.write(do2)
-    st.markdown("<h6 style='text-align: center; color: grey;'> Concept Summary </h6>", unsafe_allow_html=True)
+    st.markdown("<h6 style='text-align: center; color: grey;'> Theme Summary </h6>", unsafe_allow_html=True)
     st.write(do1)
     st.markdown("<h6 style='text-align: center; color: grey;'> Reference Posts </h6>", unsafe_allow_html=True)
     st.write(do3)
