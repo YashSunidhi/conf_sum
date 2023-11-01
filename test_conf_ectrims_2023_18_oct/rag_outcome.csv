@@ -3,13 +3,13 @@ Question,Response,Source_Data
 
 Ublituximab:
 
-Scenario: A recent study presented at MS Milan revealed that ublituximab, a B-cell depleting therapy, continues to demonstrate long-term efficacy in patients with AQP4-IgG seropositive neuromyelitis optica spectrum disorder (NMOSD).
-
-Target stakeholders: Patients with NMOSD, healthcare professionals, pharmaceutical companies.
-
-Unmet needs: Effective and safe treatment options for NMOSD patients.
-
-Message discussed: Ublituximab's long-term efficacy in NMOSD patients highlights its potential as a viable treatment option, providing hope for patients and healthcare professionals.
+    a. Scenario: A recent study presented at MS Milan revealed that ublituximab, a B-cell depleting therapy, continues to demonstrate long-term efficacy in patients with AQP4-IgG seropositive neuromyelitis optica spectrum disorder (NMOSD).
+    
+    b. Target stakeholders: Patients with NMOSD, healthcare professionals, pharmaceutical companies.
+    
+    c. Unmet needs: Effective and safe treatment options for NMOSD patients.
+    
+    d. Message discussed: Ublituximab's long-term efficacy in NMOSD patients highlights its potential as a viable treatment option, providing hope for patients and healthcare professionals.
 
 Natalizumab (Tysabri):
 
