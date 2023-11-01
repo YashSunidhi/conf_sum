@@ -166,7 +166,7 @@ def concept_view_1():
         rag = st.selectbox("Select Question of Interest",(drg['Question'].to_list()))
         st.markdown("<h6 style='text-align: center; color: black;'> Generated Response </h6>", unsafe_allow_html=True)
         st.markdown(drg[drg['Question']==rag]['Response'].reset_index(drop=True)[0])
-        st.markdown("<h6 style='text-align: center; color: black;'> Source Documents </h6>", unsafe_allow_html=True)
+        st.markdown("<h6 style='text-align: center; color: black;'> Referred Source Documents before Compilation of Response Generation </h6>", unsafe_allow_html=True)
         st.markdown(drg[drg['Question']==rag]['Source_Data'].reset_index(drop=True)[0])
                            
         
