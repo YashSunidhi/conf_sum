@@ -145,7 +145,7 @@ def concept_view_1():
     #timestamps = list(pd.to_datetime(dx['Date']).dt.date)
     figt = loaded_model.visualize_topics_over_time(topics_over_time, top_n_topics=18,custom_labels=True)
     dc = pd.read_csv('./test_conf_ectrims_17_oct_2023/top_Summary.csv')
-    tab6, tab5, tab0, tab1, tab2 = st.tabs(["Overall Summary","Temporal-View","Concept-Tweet Distribution","Concept View in Spacial Distribution", "Concept View in Hierarchical Distribution"])
+    tab6, tab5, tab1, tab2 = st.tabs(["Overall Summary","Temporal-View","Concept View in Spacial Distribution", "Concept View in Hierarchical Distribution"])
     with tab6:
         # Use the Streamlit theme.
         # This is the default. So you can also omit the theme argument.
@@ -187,10 +187,10 @@ def concept_view_1():
         # This is the default. So you can also omit the theme argument.
         st.plotly_chart(figt, theme="streamlit", use_container_width=True)
     
-    with tab0:
-        # Use the Streamlit theme.
-        # This is the default. So you can also omit the theme argument.
-        st.plotly_chart(fign, theme="streamlit", use_container_width=True)
+    # with tab0:
+    #     # Use the Streamlit theme.
+    #     # This is the default. So you can also omit the theme argument.
+    #     st.plotly_chart(fign, theme="streamlit", use_container_width=True)
     
     with tab1:
         # Use the Streamlit theme.
