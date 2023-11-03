@@ -16,6 +16,7 @@ from bertopic.representation import PartOfSpeech, KeyBERTInspired, MaximalMargin
 import streamlit as st
 from trubrics.integrations.streamlit import FeedbackCollector
 from streamlit_feedback import streamlit_feedback
+from streamlit_extras.stylable_container import stylable_container
 
 st.set_page_config(layout="wide")
 st.markdown("<h1 style='text-align: center; color: black;'> Conference Listening GenAI </h1>", unsafe_allow_html=True)
@@ -167,6 +168,15 @@ def concept_view_1():
         st.markdown("<h6 style='text-align: center; color: black;'> Generated Response </h6>", unsafe_allow_html=True)
         st.markdown(drg[drg['Question']==rag]['Response'].reset_index(drop=True)[0])
         st.markdown("<h6 style='text-align: center; color: black;'> Referred Source Documents before Compilation of Response Generation </h6>", unsafe_allow_html=True)
+        with stylable_container(
+            "codeblock",
+            """
+            code {
+                white-space: pre-wrap !important;
+            }
+            """,
+        ):
+            st.code(drg[drg['Question']==rag]['Source_Data'].reset_index(drop=True)[0])
         st.code(drg[drg['Question']==rag]['Source_Data'].reset_index(drop=True)[0])
                            
         
