@@ -167,7 +167,7 @@ def concept_view_1():
         st.markdown("<h6 style='text-align: center; color: black;'> Generated Response </h6>", unsafe_allow_html=True)
         st.markdown(drg[drg['Question']==rag]['Response'].reset_index(drop=True)[0])
         st.markdown("<h6 style='text-align: center; color: black;'> Referred Source Documents before Compilation of Response Generation </h6>", unsafe_allow_html=True)
-        st.markdown(drg[drg['Question']==rag]['Source_Data'].reset_index(drop=True)[0])
+        st.code(drg[drg['Question']==rag]['Source_Data'].reset_index(drop=True)[0])
                            
         
 #         st.markdown("<h4 style='text-align: center; color: black;'> Overall Summary </h4>", unsafe_allow_html=True)
