@@ -177,7 +177,6 @@ def concept_view_1():
             """,
         ):
             st.code(drg[drg['Question']==rag]['Source_Data'].reset_index(drop=True)[0])
-        st.code(drg[drg['Question']==rag]['Source_Data'].reset_index(drop=True)[0])
                            
         
 #         st.markdown("<h4 style='text-align: center; color: black;'> Overall Summary </h4>", unsafe_allow_html=True)
