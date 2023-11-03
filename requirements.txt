@@ -18,3 +18,4 @@ auto_gptq
 replicate
 bertopic
 plotly
+streamlit-extras
