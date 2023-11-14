@@ -62,7 +62,7 @@ def main_page():
     #st.write(f"Identified Theme: **{concept_option}**")
     #st.markdown("<h5 style='text-align: center; color: grey;'> Representative Docs base Summary (Problem-Solution Structure) </h5>", unsafe_allow_html=True)
     do1 = df[(df['Concept']==concept_option)]['Summary'].reset_index(drop=True)[0]
-    do2 = df[(df['Concept']==concept_option)]['Title'].reset_index(drop=True)[0]
+    do2 = df[(df['Concept']==concept_option)]['Concept'].reset_index(drop=True)[0]
     do3 = ' \n\n'.join(df[(df['Concept']==concept_option)]['Represented Document'].reset_index(drop=True).to_list())
     # do3_1 = ' \n\n'.join(df1[(df1['CustomName']==concept_option) & (df1['Sentiment_label']=='positive') ]['Full Text'].reset_index(drop=True).to_list())
     # do3_2 = ' \n\n'.join(df1[(df1['CustomName']==concept_option) & (df1['Sentiment_label']=='negative') ]['Full Text'].reset_index(drop=True).to_list())
