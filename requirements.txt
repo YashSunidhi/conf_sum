@@ -1,6 +1,7 @@
 streamlit
 trubrics[streamlit]==1.6.0
 streamlit-feedback
+scipy==1.11.4
 PyMuPDF==1.22.3
 pdfplumber==0.8.0
 pdf2image==1.16.2
